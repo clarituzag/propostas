@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Proposta Comercial — Clarituz Agência | ForClean</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Design Tokens (Mantidos conforme original) ── */
+    :root {
+      --brand:            #F5A623;
+      --brand-hover:      #E07B00;
+      --brand-deep:       #B85C00;
+      --brand-muted:      rgba(245,166,35,0.12);
+      --brand-muted-str:  rgba(245,166,35,0.20);
+      --bg-base:          #111111;
+      --bg-surface:       #1A1A1A;
+      --bg-elevated:      #242424;
+      --bg-card:          #1E1E1E;
+      --text-primary:     #F5F4F0;
+      --text-secondary:   #A09E9A;
+      --text-muted:       #5A5855;
+      --border:           rgba(255,255,255,0.07);
+      --border-strong:    rgba(255,255,255,0.14);
+      --grad-brand:       linear-gradient(135deg, #F5A623 0%, #E07B00 50%, #B85C00 100%);
+      --grad-hero:        linear-gradient(135deg, #111111 0%, #000000 55%, #2E1E00 100%);
+      --grad-text:        linear-gradient(90deg, #F5A623 0%, #FFFFFF 100%);
+      --grad-line:        linear-gradient(90deg, #F5A623 0%, #E07B00 50%, #B85C00 100%);
+      --radius-sm:  6px;
+      --radius-md:  10px;
+      --radius-lg:  16px;
+      --radius-xl:  24px;
+    }
+
+    /* ── Base ── */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--bg-base);
+      color: var(--text-primary);
+      overflow-x: hidden;
+    }
+    ::selection { background: rgba(245,166,35,0.22); color: var(--text-primary); }
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: var(--bg-base); }
+    ::-webkit-scrollbar-thumb { background: var(--brand-deep); border-radius: 2px; }
+
+    .text-grad {
+      background: var(--grad-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .grad-brand { background: var(--grad-brand); }
+
+    .card {
+      background: var(--bg-card);
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      transition: border-color .3s ease, transform .3s ease, box-shadow .3s ease;
+    }
+    .card:hover {
+      border-color: rgba(245,166,35,0.30);
+      transform: translateY(-3px);
+      box-shadow: 0 16px 48px rgba(245,166,35,0.08);
+    }
+
+    .plan-card {
+      background: var(--bg-base);
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius-lg);
+    }
+
+    .plan-featured {
+      border-radius: var(--radius-lg);
+      background:
+        #1C1810 padding-box,
+        linear-gradient(135deg, #F5A623 0%, #FFD966 45%, #E07B00 80%, #B85C00 100%) border-box;
+      border: 1.5px solid transparent;
+      position: relative;
+    }
+
+    .pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 14px; border-radius: 9999px; font-size: 10px;
+      font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+      background: var(--brand-muted); border: 0.5px solid rgba(245,166,35,0.30);
+      color: var(--brand);
+    }
+    .pill::before {
+      content: ''; width: 5px; height: 5px; background: var(--brand); border-radius: 50%;
+    }
+
+    .divider { height: 0.5px; background: var(--border); }
+    .divider-brand { height: 0.5px; background: var(--grad-line); }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      background: var(--grad-brand); color: #1A0F00; font-family: 'Montserrat', sans-serif;
+      font-weight: 700; font-size: 14px; border-radius: var(--radius-md);
+      padding: 14px 32px; border: none; cursor: pointer;
+      transition: opacity .2s, transform .2s, box-shadow .2s; text-decoration: none;
+    }
+    .btn-primary:hover { opacity: .92; transform: translateY(-2px); box-shadow: 0 10px 36px rgba(245,166,35,0.35); }
+    .btn-outline {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      background: transparent; color: var(--text-primary); font-family: 'Montserrat', sans-serif;
+      font-weight: 500; font-size: 14px; border-radius: var(--radius-md);
+      padding: 13px 32px; border: 0.5px solid var(--border-strong); cursor: pointer;
+      transition: background .2s, border-color .2s, transform .2s; text-decoration: none;
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.22); transform: translateY(-2px); }
+
+    .icon-badge {
+      width: 40px; height: 40px; border-radius: var(--radius-md);
+      background: var(--grad-brand); display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .ribbon {
+      position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
+      background: var(--grad-brand); color: #1A0F00; font-weight: 800; font-size: 10px;
+      letter-spacing: .10em; text-transform: uppercase; padding: 4px 20px; border-radius: 9999px;
+      white-space: nowrap; box-shadow: 0 4px 12px rgba(245,166,35,0.2);
+    }
+
+    .svc-card {
+      background: var(--bg-card); border: 0.5px solid var(--border);
+      border-radius: var(--radius-lg); overflow: hidden;
+      transition: border-color .3s ease, transform .3s ease, box-shadow .3s ease;
+      display: flex; flex-direction: column;
+    }
+    .svc-card:hover {
+      border-color: rgba(245,166,35,0.30); transform: translateY(-3px);
+      box-shadow: 0 16px 48px rgba(245,166,35,0.08);
+    }
+    
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up { animation: fadeUp .65s ease both; }
+    .d1 { animation-delay: .12s; }
+    .d2 { animation-delay: .24s; }
+    .d3 { animation-delay: .36s; }
+
+    .t-dot {
+      width: 8px; height: 8px; border-radius: 50%; background: var(--brand);
+      box-shadow: 0 0 0 3px rgba(245,166,35,0.18); flex-shrink: 0; margin-top: 6px;
+    }
+    
+    @media (max-width: 640px) {
+      .btn-primary, .btn-outline { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<nav style="position:fixed;top:0;left:0;right:0;z-index:50;
+  background:rgba(17,17,17,0.90);backdrop-filter:blur(14px);
+  border-bottom:0.5px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 48px;">
+  <span style='font-family:Montserrat,sans-serif;font-size:18px;font-weight:800;letter-spacing:-0.03em;'><span style='background:linear-gradient(90deg,#F5A623,#fff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;'>Clarituz</span><span style='color:#F5F4F0;' > Agência</span></span>
+  <a href="#cta" class="btn-primary" style="padding:10px 22px;font-size:13px;">Falar com a Agência</a>
+</nav>
+
+<section style="background:var(--grad-hero);min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;padding:120px 24px 80px;text-align:center;position:relative;overflow:hidden;">
+
+  <div style="position:absolute;top:-80px;left:50%;transform:translateX(-50%);
+    width:600px;height:400px;
+    background:radial-gradient(ellipse, rgba(245,166,35,0.10) 0%, transparent 70%);
+    pointer-events:none;"></div>
+
+  <div style="max-width:800px;margin:0 auto;position:relative;">
+    <span class="pill fade-up">Diagnóstico Estratégico · ForClean | Ar-Condicionado Campinas</span>
+
+    <h1 class="fade-up d1" style="font-size:clamp(32px,5.5vw,56px);font-weight:800;line-height:1.1;
+      letter-spacing:-0.03em;margin:28px 0 16px;">
+      Você passa 8 horas respirando este ar.<br/>
+      <span class="text-grad">Você sabe o que tem dentro dele?</span>
+    </h1>
+
+    <p class="fade-up d2" style="color:var(--text-secondary);font-size:17px;line-height:1.75;
+      max-width:600px;margin:0 auto 36px;">
+      Transformamos a ForClean de uma simples empresa de manutenção na maior autoridade em saúde e ar puro de Campinas — com método e dados.
+    </p>
+
+    <div class="fade-up d3" style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-bottom:56px;">
+      <a href="#investimento" class="btn-primary">Ver Planos e Investimentos</a>
+      <a href="#solucao" class="btn-outline">Como vamos virar esse jogo</a>
+    </div>
+
+    <div class="fade-up d3" style="max-width:640px;margin:0 auto;">
+      <h2 style="font-size:clamp(18px,2.8vw,26px);font-weight:700;line-height:1.4;color:#E07B00;letter-spacing:-.01em;">
+        O ar que sua família respira pode estar te adoecendo — e sua marca ainda não falou sobre isso.
+      </h2>
+    </div>
+  </div>
+  <div style="position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--grad-line);"></div>
+</section>
+
+<section style="background:var(--bg-base);padding:88px 24px;">
+  <div style="max-width:1000px;margin:0 auto;">
+    <h2 style="font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:-0.03em;margin:10px 0 16px;">
+      O Retrato Honesto: <span class="text-grad">A ForClean está invisível?</span>
+    </h2>
+    <p style="color:var(--text-secondary);font-size:15px;line-height:1.8;max-width:600px;margin-bottom:48px;">
+      O serviço é sólido e técnico, mas a comunicação está fragmentada. Hoje, a ForClean está falando com o vazio no Instagram enquanto perde vendas qualificadas.
+    </p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-bottom:56px;">
+      <div class="card" style="padding:24px 28px;display:flex;align-items:flex-start;gap:16px;">
+        <span style="font-size:22px;flex-shrink:0;">❌</span>
+        <div>
+          <h4 style="font-size:14px;font-weight:700;margin-bottom:6px;">Posicionamento Confuso</h4>
+          <p style="color:var(--text-secondary);font-size:13px;line-height:1.7;">O site diz uma coisa, a bio outra e os posts outra. O consumidor não entende seu benefício central.</p>
+        </div>
+      </div>
+      <div class="card" style="padding:24px 28px;display:flex;align-items:flex-start;gap:16px;">
+        <span style="font-size:22px;flex-shrink:0;">❌</span>
+        <div>
+          <h4 style="font-size:14px;font-weight:700;margin-bottom:6px;">Maior Argumento Escondido</h4>
+          <p style="color:var(--text-secondary);font-size:13px;line-height:1.7;">O risco à saúde (Asma, Rinite, Pneumonia) não aparece nos posts. O feed fala com técnicos, não com pais de família.</p>
+        </div>
+      </div>
+      <div class="card" style="padding:24px 28px;display:flex;align-items:flex-start;gap:16px;">
+        <span style="font-size:22px;flex-shrink:0;">❌</span>
+        <div>
+          <h4 style="font-size:14px;font-weight:700;margin-bottom:6px;">Site Focado em Produto</h4>
+          <p style="color:var(--text-secondary);font-size:13px;line-height:1.7;">A página educa sobre unidades interna/externa antes de conectar com a dor do cliente. A ordem está invertida.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center;">
+      <div style="display:inline-block;max-width:650px;
+        border:0.5px solid rgba(245,166,35,0.22);border-radius:var(--radius-lg);
+        padding:32px 40px;background:rgba(245,166,35,0.04);">
+        <p style="color:var(--text-primary);font-size:18px;line-height:1.6;font-weight:500;">
+          A ForClean é uma empresa de SAÚDE que usa o ar-condicionado como veículo — não o contrário. É aqui que o jogo vira.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="diagnostico" style="background:var(--bg-surface);padding:88px 24px;">
+  <div style="max-width:1000px;margin:0 auto;">
+    <h2 style="font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:-0.03em;margin:10px 0 16px;">
+      Ativos Valiosos que <span class="text-grad">já pertencem à ForClean</span>
+    </h2>
+    <p style="color:var(--text-secondary);font-size:15px;line-height:1.8;max-width:600px;margin-bottom:40px;">
+      Nenhum desses diferenciais está sendo comunicado com a força que merece. Vamos tirar esses tesouros do porão.
+    </p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+      <div class="card" style="padding:32px;border-color:rgba(46, 204, 113, 0.2);">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+          <span style="font-size:20px;">✅</span>
+          <h3 style="font-size:16px;font-weight:700;">Diferenciais Competitivos</h3>
+        </div>
+        <ul style="color:var(--text-secondary);font-size:14px;line-height:1.7;list-style:none;padding:0;display:flex;flex-direction:column;gap:12px;">
+          <li>• Registro no CFT/CRT — credencial técnica rara no mercado.</li>
+          <li>• Produtos certificados pela ANVISA/MS.</li>
+          <li>• Tecnologia de Ozônio — diferencial de saúde real.</li>
+        </ul>
+      </div>
+
+      <div class="card" style="padding:32px;border-color:rgba(245, 166, 35, 0.3);">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+          <span style="font-size:20px;">🎯</span>
+          <h3 style="font-size:16px;font-weight:700;">Onde o lucro está fugindo</h3>
+        </div>
+        <ul style="color:var(--text-secondary);font-size:14px;line-height:1.7;list-style:none;padding:0;display:flex;flex-direction:column;gap:12px;">
+          <li>• Bio do Instagram sem urgência e proposta de valor clara.</li>
+          <li>• Pacotes (Bronze, Prata, Ouro) sem transparência pública.</li>
+          <li>• Ausência de histórias reais e prova social estratégica.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="solucao" style="background:var(--bg-base);padding:88px 24px;">
+  <div style="max-width:1000px;margin:0 auto;">
+    <h2 style="font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:-0.03em;margin:10px 0 16px;">
+      Os 4 Pilares do <span class="text-grad">Reposicionamento</span>
+    </h2>
+    <p style="color:var(--text-secondary);font-size:15px;line-height:1.8;max-width:600px;margin-bottom:48px;">
+      Vamos transformar sua comunicação de "técnica" para "essencial".
+    </p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;">
+
+      <div class="svc-card">
+        <div style="padding:28px;">
+          <h3 style="font-size:18px;font-weight:800;color:var(--brand);margin-bottom:20px;">Pilar 1: Saúde (Medo Consciente)</h3>
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.6;">Trocar fotos de compressores por posts que perguntam: "O que está crescendo no seu filtro agora?". Gerar urgência real.</p>
+        </div>
+      </div>
+
+      <div class="svc-card">
+        <div style="padding:28px;">
+          <h3 style="font-size:18px;font-weight:800;color:var(--brand);margin-bottom:20px;">Pilar 2: Credibilidade Técnica</h3>
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.6;">Mostrar o processo passo a passo, selos ANVISA e o registro CRT como barreiras contra amadores.</p>
+        </div>
+      </div>
+
+      <div class="svc-card">
+        <div style="padding:28px;">
+          <h3 style="font-size:18px;font-weight:800;color:var(--brand);margin-bottom:20px;">Pilar 3: Conexão Humana</h3>
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.6;">Trazer histórias reais de clientes, depoimentos gravados e o dia a dia da ForClean para humanizar a marca.</p>
+        </div>
+      </div>
+
+      <div class="svc-card">
+        <div style="padding:28px;">
+          <h3 style="font-size:18px;font-weight:800;color:var(--brand);margin-bottom:20px;">Pilar 4: Conversão Direta</h3>
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.6;">Transparência total nos pacotes e chamadas para ação focadas no WhatsApp, eliminando atrito na venda.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="processo" style="background:var(--bg-surface);padding:88px 24px;">
+  <div style="max-width:1000px;margin:0 auto;">
+    <h2 style="font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:-0.03em;margin:10px 0 16px;">
+      Cronograma de <span class="text-grad">Recuperação de Marca</span>
+    </h2>
+    
+    <div style="display:flex;flex-direction:column;gap:16px;">
+      <div class="card" style="padding:32px;">
+        <h3 style="font-size:18px;font-weight:700;margin-bottom:8px;">Fase 1: O Estancamento (Dias 1-30)</h3>
+        <p style="color:var(--text-secondary);font-size:13px;">Nova Bio, reordenamento do site (Dor antes do Produto) e criação da Big Idea: "Ar puro para sua família".</p>
+      </div>
+      <div class="card" style="padding:32px;">
+        <h3 style="font-size:18px;font-weight:700;margin-bottom:8px;">Fase 2: O Domínio (Dias 31-60)</h3>
+        <p style="color:var(--text-secondary);font-size:13px;">Lançamento de anúncios no Google Ads e Meta Ads focados em Campinas e arredores.</p>
+      </div>
+      <div class="card" style="padding:32px;">
+        <h3 style="font-size:18px;font-weight:700;margin-bottom:8px;">Fase 3: A Escala (61+ dias)</h3>
+        <p style="color:var(--text-secondary);font-size:13px;">Otimização de custos, remarketing para orçamentos abertos e expansão de autoridade digital.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="investimento" style="background:var(--bg-surface);padding:88px 24px;">
+  <div style="max-width:1000px;margin:0 auto;">
+    <h2 style="font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:-0.03em;margin:10px 0 16px;">
+      Investimento no seu <span class="text-grad">Crescimento</span>
+    </h2>
+
+    <div style="margin-bottom:64px;">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px;">
+        <h3 style="font-size:clamp(18px,2.5vw,24px);font-weight:800;color:var(--text-primary);">Vitrine Digital (Social Media ForClean)</h3>
+        <div style="flex:1;height:0.5px;background:var(--border);"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;align-items:center;">
+
+        <div class="plan-card" style="padding:28px;">
+          <p style="font-size:10px;color:var(--text-secondary);font-weight:600;text-transform:uppercase;margin-bottom:12px;">Essencial</p>
+          <p style="font-size:36px;font-weight:800;margin-bottom:4px;">
+            <span style="font-size:18px;font-weight:500;">R$</span>
+            <span class="text-grad">1.190</span>
+            <span style="font-size:14px;font-weight:400;">/mês</span>
+          </p>
+          <div style="height:2px;background:var(--border);margin:16px 0 20px;"></div>
+          <div style="display:flex;flex-direction:column;gap:10px;font-size:13px;color:var(--text-primary);">
+            <div>1 post carrosséis ou estáticos por semana (4 postagens no mês)</div>
+            <div>2 Reels mês (Incluso filmmaker profissional)</div>
+            <div>3 stories/semana (Bastidores/Técnica)</div>
+            <div>Nova Bio e Link de alta conversão</div>
+            <div>Relatório mensal de performance
+            </div>
+            <div>Estratégia + planejamento + calendário de postagens</div>
+          </div>
+        </div>
+
+        <div class="plan-featured" style="padding:36px 28px;transform:scale(1.02);z-index:2;">
+          <div class="ribbon">⭐ Máxima Autoridade</div>
+          <p style="font-size:10px;color:var(--brand);font-weight:600;text-transform:uppercase;margin-bottom:12px;">Pro</p>
+          <p style="font-size:36px;font-weight:800;margin-bottom:4px;">
+            <span style="font-size:18px;font-weight:500;">R$</span>
+            <span class="text-grad">1.590</span>
+            <span style="font-size:14px;font-weight:400;">/mês</span>
+          </p>
+          <div style="height:2px;background:rgba(245,166,35,0.20);margin:16px 0 20px;"></div>
+          <div style="display:flex;flex-direction:column;gap:10px;font-size:13px;color:var(--text-primary);">
+            <div>3 posts carrosséis ou estáticos/semana (12 postagens no mês)</div>
+            <div>2 Reels por semana (8 reels no mês - Incluso filmmaker profissional)</div>
+            <div>Nova Bio e Link de alta conversão</div>
+            <div>Gestão completa de interações e DM's</div>
+            <div>Estratégia + planejamento + calendário de postagens
+</div>
+<div>Captação presencial</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div style="margin-bottom:64px;">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px;">
+        <h3 style="font-size:clamp(18px,2.5vw,24px);font-weight:800;color:var(--text-primary);">Tráfego Pago (Captura de Leads)</h3>
+        <div style="flex:1;height:0.5px;background:var(--border);"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;align-items:center;">
+
+        <div class="plan-card" style="padding:28px;">
+          <p style="font-size:10px;color:var(--text-secondary);font-weight:600;text-transform:uppercase;margin-bottom:12px;">Google Ads (Busca)</p>
+          <p style="font-size:36px;font-weight:800;margin-bottom:4px;">
+            <span style="font-size:18px;font-weight:500;">R$</span>
+            <span class="text-grad">1.190</span>
+            <span style="font-size:14px;font-weight:400;">/mês</span>
+          </p>
+          <p style="color:var(--text-primary);font-size:12px;">Gestão de termos como "Instalação Ar-Condicionado Campinas"</p>
+        </div>
+
+        <div class="plan-card" style="padding:28px;">
+          <p style="font-size:10px;color:var(--text-secondary);font-weight:600;text-transform:uppercase;margin-bottom:12px;">Meta Ads Instagram (Saúde)</p>
+          <p style="font-size:36px;font-weight:800;margin-bottom:4px;">
+            <span style="font-size:18px;font-weight:500;">R$</span>
+            <span class="text-grad">1.490</span>
+            <span style="font-size:14px;font-weight:400;">/mês</span>
+          </p>
+          <p style="color:var(--text-primary);font-size:12px;">Campanhas de consciência de saúde e ozônio</p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<div class="divider"></div>
+
+<section id="cta" style="
+  background:radial-gradient(ellipse 80% 60% at 50% 100%, rgba(245,166,35,0.15) 0%, transparent 70%), var(--bg-surface);
+  padding:112px 24px;text-align:center;">
+  <div style="max-width:700px;margin:0 auto;">
+    <h2 style="font-size:clamp(32px,5vw,52px);font-weight:800;letter-spacing:-.03em;line-height:1.1;margin-bottom:20px;">
+      Pronto para ser a referência de<br/><span class="text-grad">ar puro em Campinas?</span>
+    </h2>
+    <p style="color:var(--text-secondary);font-size:17px;line-height:1.75;margin-bottom:48px;">
+      O próximo passo é uma ligação de 30 minutos para definirmos o foco comercial e os pacotes transparentes.
+    </p>
+
+    <div style="display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin-bottom:48px;">
+      <a href="https://wa.me/5519992837133" target="_blank" class="btn-primary" style="font-size:16px;padding:18px 40px;">💬 Chamar Jeferson no WhatsApp Agora</a>
+    </div>
+    
+    <div style="height:0.5px;background:var(--border);margin-bottom:28px;"></div>
+    <p style="color:var(--text-primary);font-size:13px;">Copyright © 2026 · Clarituz Agência | Marketing & Tecnologia · Todos os direitos reservados.</p>
+  </div>
+</section>
+
+<script>
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.10 });
+
+  document.querySelectorAll('.card, .plan-featured, .svc-card, h2, section > div > p').forEach(el => {
+    if (!el.closest('nav')) {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(18px)';
+      el.style.transition = 'opacity .55s ease, transform .55s ease';
+      io.observe(el);
+    }
+  });
+</script>
+
+</body>
+</html>
