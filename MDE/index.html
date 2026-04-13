@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Proposta Comercial — Clarituz Agência | MDE Estruturas Metálicas</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Design Tokens (Light Theme Refatorado) ── */
+    :root {
+      --brand:            #F5A623;
+      --brand-hover:      #E07B00;
+      --brand-deep:       #B85C00;
+      --brand-muted:      rgba(245,166,35,0.15);
+      --brand-muted-str:  rgba(245,166,35,0.25);
+      
+      /* Cores de Fundo - Tema Claro */
+      --bg-base:          #E2DCD2; /* Bege Areia */
+      --bg-surface:       #D9D3C8; /* Bege escurecido (quebra de seções) */
+      --bg-card:          #FFFFFF; /* Cards Brancos */
+      --bg-charcoal:      #262626; /* Cinza Carvão para destaque */
+      
+      /* Cores de Texto */
+      --text-primary:     #1E1A16; /* Quase preto para leitura */
+      --text-secondary:   #5C554D; /* Cinza amarronzado */
+      --text-light:       #F5F4F0; /* Texto claro para os cards carvão */
+      
+      /* Bordas */
+      --border:           rgba(0,0,0,0.08);
+      --border-strong:    rgba(0,0,0,0.15);
+      --border-charcoal:  rgba(255,255,255,0.08);
+      
+      /* Gradientes */
+      --grad-brand:       linear-gradient(135deg, #F5A623 0%, #E07B00 50%, #B85C00 100%);
+      --grad-hero:        linear-gradient(135deg, #E2DCD2 0%, #D9D3C8 100%);
+      --grad-text:        linear-gradient(90deg, #D96A00 0%, #B85C00 100%); /* Laranja escuro para ler no fundo claro */
+      --grad-line:        linear-gradient(90deg, #F5A623 0%, #E07B00 50%, #B85C00 100%);
+      
+      /* Raios de Borda */
+      --radius-sm:  6px;
+      --radius-md:  10px;
+      --radius-lg:  16px;
+      --radius-xl:  24px;
+    }
+
+    /* ── Base ── */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--bg-base);
+      color: var(--text-primary);
+      overflow-x: hidden;
+    }
+    ::selection { background: rgba(245,166,35,0.30); color: var(--text-primary); }
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: var(--bg-base); }
+    ::-webkit-scrollbar-thumb { background: var(--brand-deep); border-radius: 2px; }
+
+    /* ── Text gradient ── */
+    .text-grad {
+      background: var(--grad-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── Brand gradient bg ── */
+    .grad-brand { background: var(--grad-brand); }
+
+    /* ── Cards Gerais ── */
+    .card {
+      background: var(--bg-card);
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      transition: border-color .3s ease, transform .3s ease, box-shadow .3s ease;
+    }
+    .card:hover {
+      border-color: rgba(245,166,35,0.40);
+      transform: translateY(-3px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.06);
+    }
+
+    /* ── Plan card (não-destaque / transparentes) ── */
+    .plan-card {
+      background: transparent; /* FUNDO TRANSPARENTE */
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      display: flex;
+      flex-direction: column;
+      transition: background .3s ease, border-color .3s ease;
+    }
+    .plan-card:hover {
+      background: rgba(255,255,255,0.4);
+      border-color: rgba(245,166,35,0.30);
+    }
+
+    /* ── Plan featured (DESTAQUE / CAIXA BRANCA) ── */
+    .plan-featured {
+      background: #FFFFFF; /* PREENCHIMENTO 100% BRANCO */
+      border: 1px solid rgba(245,166,35,0.3); /* Borda laranja suave */
+      border-radius: var(--radius-lg);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.06); /* Sombra para dar destaque */
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+    .plan-featured:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 48px rgba(0,0,0,0.1);
+    }
+
+    /* ── Pill / Badge ── */
+    .pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 14px; border-radius: 9999px; font-size: 10px;
+      font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+      background: rgba(245,166,35,0.15); border: 0.5px solid rgba(245,166,35,0.40);
+      color: var(--brand-deep);
+    }
+    .pill::before {
+      content: ''; width: 5px; height: 5px; background: var(--brand-deep); border-radius: 50%;
+    }
+
+    /* ── Divider ── */
+    .divider { height: 0.5px; background: var(--border); }
+    .divider-brand { height: 0.5px; background: var(--grad-line); }
+
+    /* ── Buttons ── */
+    .btn-primary {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      background: var(--grad-brand); color: #1A0F00; font-family: 'Montserrat', sans-serif;
+      font-weight: 700; font-size: 14px; border-radius: var(--radius-md);
+      padding: 14px 32px; border: none; cursor: pointer;
+      transition: opacity .2s, transform .2s, box-shadow .2s; text-decoration: none;
+    }
+    .btn-primary:hover { opacity: .92; transform: translateY(-2px); box-shadow: 0 10px 36px rgba(245,166,35,0.35); }
+    
+    .btn-outline {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      background: transparent; color: var(--text-primary); font-family: 'Montserrat', sans-serif;
+      font-weight: 600; font-size: 14px; border-radius: var(--radius-md);
+      padding: 13px 32px; border: 0.5px solid var(--border-strong); cursor: pointer;
+      transition: background .2s, border-color .2s, transform .2s; text-decoration: none;
+    }
+    .btn-outline:hover { background: rgba(0,0,0,0.03); border-color: rgba(0,0,0,0.25); transform: translateY(-2px); }
+
+    /* ── Icon badge ── */
+    .icon-badge {
+      width: 40px; height: 40px; border-radius: var(--radius-md);
+      background: var(--grad-brand); display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* ── Bonus ribbon ── */
+    .ribbon {
+      position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
+      background: var(--grad-brand); color: #1A0F00; font-weight: 800; font-size: 10px;
+      letter-spacing: .10em; text-transform: uppercase; padding: 4px 20px; border-radius: 9999px;
+      white-space: nowrap; box-shadow: 0 4px 12px rgba(245,166,35,0.3);
+    }
+
+    /* ── Service card ── */
+    .svc-card {
+      background: var(--bg-card); border: 0.5px solid var(--border);
+      border-radius: var(--radius-lg); overflow: hidden;
+      transition: border-color .3s ease, transform .3s ease, box-shadow .3s ease;
+      display: flex; flex-direction: column;
+    }
+    .svc-card:hover {
+      border-color: rgba(245,166,35,0.40); transform: translateY(-3px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.06);
+    }
+    
+    /* ── Fade-up animation ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up { animation: fadeUp .65s ease both; }
+    .d1 { animation-delay: .12s; }
+    .d2 { animation-delay: .24s; }
+    .d3 { animation-delay: .36s; }
+
+    /* ── Timeline dot ── */
+    .t-dot {
+      width: 8px; height: 8px; border-radius: 50%; background: var(--brand);
+      box-shadow: 0 0 0 3px rgba(245,166,35,0.25); flex-shrink: 0; margin-top: 6px;
+    }
+    
+    @media (max-width: 640px) {
+      .btn-primary, .btn-outline { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<nav style="position:fixed;top:0;left:0;right:0;z-index:50;
+  background:rgba(226,220,210,0.85);backdrop-filter:blur(14px);
+  border-bottom:0.5px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 48px;">
+  <img
+    src="https://i.ibb.co/dJbhkR8m/Logo-Clarituz.png"
+    alt="Clarituz Agência"
+    style="height:65px;width:auto;max-width:280px;object-fit:contain;display:block;"
+    onerror="this.outerHTML='<span style=\'font-family:Montserrat,sans-serif;font-size:18px;font-weight:800;letter-spacing:-0.03em;\'><span style=\'background:linear-gradient(90deg,#D96A00,#B85C00);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;\'>Clarituz</span><span style=\'color:var(--text-primary);\' > Agência</span></span>'"
+  />
+  <a href="#cta" class="btn-primary" style="padding:10px 22px;font-size:13px;">Falar com a Agência</a>
+</nav>
+
+<section style="background:var(--grad-hero);min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;padding:120px 24px 80px;text-align:center;position:relative;overflow:hidden;">
+
+  <div style="position:absolute;top:-80px;left:50%;transform:translateX(-50%);
+    width:600px;height:400px;
+    background:radial-gradient(ellipse, rgba(245,166,35,0.15) 0%, transparent 70%);
+    pointer-events:none;"></div>
+
+  <div style="max-width:800px;margin:0 auto;position:relative;">
+    <span class="pill fade-up">Proposta Exclusiva | Rodolfo Fraga | MDE Estruturas Metálicas</span>
+
+    <h1 class="fade-up d1" style="font-size:clamp(32px,5.5vw,56px);font-weight:800;line-height:1.1;
+      letter-spacing:-0.03em;margin:28px 0 16px;">
+      A MDE Estruturas Metálicas na primeira posição de quem já busca<br/>
+      <span class="text-grad">contratar uma empresa de estruturas metálicas.</span>
+    </h1>
+
+    <p class="fade-up d2" style="color:var(--text-secondary);font-size:17px;line-height:1.75;
+      max-width:600px;margin:0 auto 36px;">
+      Transformamos presença digital em orçamentos qualificados e contratos de alto valor para a sua empresa — com método, dados e parceria próxima.
+    </p>
+
+    <div class="fade-up d3" style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-bottom:56px;">
+      <a href="#investimento" class="btn-primary">Ver Planos e Investimentos</a>
+      <a href="#solucao" class="btn-outline">Como vamos fazer isso</a>
+    </div>
+
+    <div class="fade-up d3" style="max-width:640px;margin:0 auto;">
+      <h2 style="font-size:clamp(18px,2.8vw,26px);font-weight:700;line-height:1.4;color:var(--brand-deep);letter-spacing:-.01em;">
+        Quantas indústrias, incorporadoras e empresas do agronegócio pesquisaram "galpão metálico" ou "estrutura metálica industrial" este mês — e pediram orçamento para um concorrente?
+      </h2>
+    </div>
+  </div>
+  <div style="position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--grad-line);"></div>
+</section>
+
+<section style="background:var(--bg-base);padding:88px 24px;">
+  <div style="max-width:1000px;margin:0 auto;">
+    <h2 style="font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:-0.03em;margin:10px 0 16px;">
+      O que acontece quando a MDE <span class="text-grad">não é encontrada?</span>
+    </h2>
+    <p style="color:var(--text-secondary);font-size:15px;line-height:1.8;max-width:600px;margin-bottom:48px;">
+      A construção com estruturas metálicas é um mercado de alto ticket. Donos de indústrias, gestores de obras, engenheiros e incorporadoras pesquisam no Google e no Instagram antes de solicitar um orçamento. Se a MDE Estruturas Metálicas não domina essas buscas, seu concorrente fecha o contrato com o cliente que deveria ser seu.
+    </p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-bottom:56px;">
+      <div class="card" style="padding:24px 28px;display:flex;align-items:flex-start;gap:16px;">
+        <span style="font-size:22px;flex-shrink:0;">❌</span>
+        <div>
+          <h4 style="font-size:14px;font-weight:700;margin-bottom:6px;">Concorrentes fechando contratos de grande porte</h4>
+          <p style="color:var(--text-secondary);font-size:13px;line-height:1.7;">Quem está melhor posicionado no digital captura as intenções de compra de projetos de alto valor antes de você — no exato momento em que o decisor está pronto para escolher um fornecedor.</p>
+        </div>
+      </div>
+      <div class="card" style="padding:24px 28px;display:flex;align-items:flex-start;gap:16px;">
+        <span style="font-size:22px;flex-shrink:0;">❌</span>
+        <div>
+          <h4 style="font-size:14px;font-weight:700;margin-bottom:6px;">Excelência técnica sem vitrine digital</h4>
+          <p style="color:var(--text-secondary);font-size:13px;line-height:1.7;">Ter anos de experiência, projetos entregues e capacidade técnica comprovada não gera novos contratos se os compradores não encontram a MDE quando pesquisam.</p>
+        </div>
+      </div>
+      <div class="card" style="padding:24px 28px;display:flex;align-items:flex-start;gap:16px;">
+        <span style="font-size:22px;flex-shrink:0;">❌</span>
+        <div>
+          <h4 style="font-size:14px;font-weight:700;margin-bottom:6px;">Crescimento limitado à indicação</h4>
+          <p style="color:var(--text-secondary);font-size:13px;line-height:1.7;">Depender apenas do boca a boca no setor industrial e da construção civil limita o volume de projetos, o ritmo de faturamento e o tamanho dos contratos que chegam até você.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center;">
+      <div style="display:inline-block;max-width:650px;
+        border:0.5px solid rgba(245,166,35,0.40);border-radius:var(--radius-lg);
+        padding:32px 40px;background:rgba(245,166,35,0.06);">
+        <p style="color:var(--text-primary);font-size:18px;line-height:1.6;font-weight:600;">
+          Você sabe responder agora mesmo quantos contratos de alto valor perdeu neste mês porque um gestor de obra encontrou outro fornecedor primeiro no Google?
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section style="background:var(--bg-surface);padding:88px 24px;">
+  <div style="max-width:1000px;margin:0 auto;">
+    <h2 style="font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:-0.03em;margin:10px 0 16px;">
+      Diagnóstico: O Cenário da <span class="text-grad">MDE Estruturas Metálicas</span>
+    </h2>
+    <p style="color:var(--text-secondary);font-size:15px;line-height:1.8;max-width:600px;margin-bottom:40px;">
+      Analisamos a presença atual do seu negócio para entender exatamente onde estão as oportunidades de alavancagem de novos projetos e contratos.
+    </p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+      <div class="card" style="padding:32px;border-color:rgba(46, 204, 113, 0.5);">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+          <span style="font-size:20px;">✅</span>
+          <h3 style="font-size:16px;font-weight:700;">A Força do Seu Negócio</h3>
+        </div>
+        <ul style="color:var(--text-secondary);font-size:14px;line-height:1.7;list-style:none;padding:0;display:flex;flex-direction:column;gap:12px;">
+          <li>• Portfólio técnico sólido com projetos de grande porte e credibilidade comprovada no mercado de construção metálica.</li>
+          <li>• Capacidade de execução, equipe especializada e domínio técnico que geram autoridade junto ao comprador final.</li>
+          <li>• Estrutura e histórico de entregas que demonstram confiabilidade para fechar contratos de alto valor.</li>
+        </ul>
+      </div>
+
+      <div class="card" style="padding:32px;border-color:rgba(245, 166, 35, 0.5);">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+          <span style="font-size:20px;">🎯</span>
+          <h3 style="font-size:16px;font-weight:700;">Onde estamos perdendo dinheiro</h3>
+        </div>
+        <ul style="color:var(--text-secondary);font-size:14px;line-height:1.7;list-style:none;padding:0;display:flex;flex-direction:column;gap:12px;">
+          <li>• Ausência de campanhas de anúncios captando decisores ativamente no momento em que pesquisam por fornecedores de estruturas metálicas.</li>
+          <li>• O site e as redes sociais não estão sendo usados como um "portfólio de autoridade" capaz de gerar urgência e confiança para solicitar orçamento.</li>
+          <li>• O alcance digital não atinge o público decisor — donos de indústrias, engenheiros responsáveis e gestores de obras — em escala.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section style="background:var(--bg-base);padding:88px 24px;">
+  <div style="max-width:1000px;margin:0 auto;">
+    <h2 style="font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:-0.03em;margin:10px 0 16px;">
+      Por que<span class="text-grad"> nos escolher?</span>
+    </h2>
+    <p style="color:var(--text-secondary);font-size:15px;line-height:1.8;max-width:640px;margin-bottom:56px;">
+      Nós não entregamos apenas "artes bonitas". Entregamos uma máquina estruturada para que o seu telefone toque com orçamentos qualificados de empresas prontas para contratar.
+    </p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;">
+      <div class="card" style="padding:32px;">
+        <div class="icon-badge" style="margin-bottom:20px;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1A0F00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 20h5v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2h5"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <h3 style="font-size:15px;font-weight:700;margin-bottom:8px;">Parceria Real</h3>
+        <p style="color:var(--text-secondary);font-size:13px;line-height:1.75;">Trabalhamos lado a lado, como se a empresa fosse nossa. Você não é mais um número na agência — fala direto com quem resolve e acompanha cada decisão estratégica.</p>
+      </div>
+      <div class="card" style="padding:32px;">
+        <div class="icon-badge" style="margin-bottom:20px;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1A0F00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        </div>
+        <h3 style="font-size:15px;font-weight:700;margin-bottom:8px;">Estratégia Focada em Contrato</h3>
+        <p style="color:var(--text-secondary);font-size:13px;line-height:1.75;">Design e conteúdo de excelência, sim. Mas com um único objetivo: transformar visualizações na tela do celular em negociações reais e projetos assinados.</p>
+      </div>
+      <div class="card" style="padding:32px;">
+        <div class="icon-badge" style="margin-bottom:20px;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1A0F00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+        </div>
+        <h3 style="font-size:15px;font-weight:700;margin-bottom:8px;">Você no Controle</h3>
+        <p style="color:var(--text-secondary);font-size:13px;line-height:1.75;">Monitoramento contínuo e transparente. Você sabe exatamente para onde vai cada centavo investido e qual retorno em novos orçamentos ele está gerando.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="solucao" style="background:var(--bg-surface);padding:88px 24px;">
+  <div style="max-width:1000px;margin:0 auto;">
+    <h2 style="font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:-0.03em;margin:10px 0 16px;">
+      Como vamos fazer os compradores <span class="text-grad">chegarem até você</span>
+    </h2>
+    <p style="color:var(--text-secondary);font-size:15px;line-height:1.8;max-width:600px;margin-bottom:48px;">
+      Não vendemos serviços soltos. Vendemos a solução exata para encher sua agenda de orçamentos qualificados com alta margem de lucro.
+    </p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;">
+
+      <div class="svc-card">
+        <div style="padding:28px;">
+          <h3 style="font-size:18px;font-weight:800;color:var(--brand-deep);margin-bottom:20px;">Domínio Local (SEO & Google)</h3>
+          
+          <div style="margin-bottom:16px;">
+            <p style="font-size:11px;font-weight:700;text-transform:uppercase;color:var(--brand-deep);margin-bottom:4px;">O PROBLEMA QUE RESOLVE</p>
+            <p style="font-size:14px;color:var(--text-primary);line-height:1.6;">A MDE não aparece quando pesquisam "galpão estrutura metálica", "construção industrial metálica" ou fornecedores na sua região.</p>
+          </div>
+
+          <div style="margin-bottom:16px;">
+            <p style="font-size:11px;font-weight:700;text-transform:uppercase;color:var(--brand-deep);margin-bottom:4px;">COMO FUNCIONA</p>
+            <p style="font-size:13px;color:var(--text-secondary);line-height:1.6;">Otimizamos sua presença no Google para que o algoritmo entenda a MDE Estruturas Metálicas como a principal autoridade e o melhor fornecedor para indicar quando alguém busca esse serviço.</p>
+          </div>
+
+          <div>
+            <p style="font-size:11px;font-weight:700;text-transform:uppercase;color:var(--brand-deep);margin-bottom:4px;">RESULTADO ESPERADO</p>
+            <p style="font-size:14px;color:var(--text-primary);line-height:1.6;">Decisores encontrando a MDE organicamente e solicitando orçamentos diretamente — sem pagar por clique.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="svc-card">
+        <div style="padding:28px;">
+          <h3 style="font-size:18px;font-weight:800;color:var(--brand-deep);margin-bottom:20px;">Interceptação de Vendas (Google Ads)</h3>
+          
+          <div style="margin-bottom:16px;">
+            <p style="font-size:11px;font-weight:700;text-transform:uppercase;color:var(--brand-deep);margin-bottom:4px;">O PROBLEMA QUE RESOLVE</p>
+            <p style="font-size:14px;color:var(--text-primary);line-height:1.6;">Você tem capacidade produtiva disponível e equipe pronta para executar, mas depende de quem aparece por acaso ou de indicações demoradas.</p>
+          </div>
+
+          <div style="margin-bottom:16px;">
+            <p style="font-size:11px;font-weight:700;text-transform:uppercase;color:var(--brand-deep);margin-bottom:4px;">COMO FUNCIONA</p>
+            <p style="font-size:13px;color:var(--text-secondary);line-height:1.6;">Posicionamos seu site no topo absoluto do Google no exato segundo em que o gestor pesquisa por fornecedores de estrutura metálica — antes que ele clique no concorrente.</p>
+          </div>
+
+          <div>
+            <p style="font-size:11px;font-weight:700;text-transform:uppercase;color:var(--brand-deep);margin-bottom:4px;">RESULTADO ESPERADO</p>
+            <p style="font-size:14px;color:var(--text-primary);line-height:1.6;">Seu WhatsApp e telefone recebendo contatos qualificados de empresas prontas para fechar contrato.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="svc-card">
+        <div style="padding:28px;">
+          <h3 style="font-size:18px;font-weight:800;color:var(--brand-deep);margin-bottom:20px;">Geração de Demanda (Meta Ads)</h3>
+          
+          <div style="margin-bottom:16px;">
+            <p style="font-size:11px;font-weight:700;text-transform:uppercase;color:var(--brand-deep);margin-bottom:4px;">O PROBLEMA QUE RESOLVE</p>
+            <p style="font-size:14px;color:var(--text-primary);line-height:1.6;">O público ideal — donos de indústrias, construtoras e agronegócio — tem orçamento aprovado para construir, mas não sabe que a MDE existe.</p>
+          </div>
+
+          <div style="margin-bottom:16px;">
+            <p style="font-size:11px;font-weight:700;text-transform:uppercase;color:var(--brand-deep);margin-bottom:4px;">COMO FUNCIONA</p>
+            <p style="font-size:13px;color:var(--text-secondary);line-height:1.6;">Segmentamos os anúncios de forma cirúrgica para aparecer no feed de pessoas com alto poder decisório e empresas em fase de expansão e investimento.</p>
+          </div>
+
+          <div>
+            <p style="font-size:11px;font-weight:700;text-transform:uppercase;color:var(--brand-deep);margin-bottom:4px;">RESULTADO ESPERADO</p>
+            <p style="font-size:14px;color:var(--text-primary);line-height:1.6;">Crescimento da autoridade da marca e geração de demanda ativa de decisores que se convencem da capacidade técnica da MDE antes mesmo de ligar.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="svc-card">
+        <div style="padding:28px;">
+          <h3 style="font-size:18px;font-weight:800;color:var(--brand-deep);margin-bottom:20px;">Portfólio de Autoridade (Redes Sociais)</h3>
+          
+          <div style="margin-bottom:16px;">
+            <p style="font-size:11px;font-weight:700;text-transform:uppercase;color:var(--brand-deep);margin-bottom:4px;">O PROBLEMA QUE RESOLVE</p>
+            <p style="font-size:14px;color:var(--text-primary);line-height:1.6;">Um decisor em potencial acessa seu perfil, mas ele parece apenas um "álbum de obras concluídas", sem gerar confiança técnica suficiente para o prospect solicitar um orçamento.</p>
+          </div>
+
+          <div style="margin-bottom:16px;">
+            <p style="font-size:11px;font-weight:700;text-transform:uppercase;color:var(--brand-deep);margin-bottom:4px;">COMO FUNCIONA</p>
+            <p style="font-size:13px;color:var(--text-secondary);line-height:1.6;">Criamos um portfólio vivo de autoridade técnica. Mostramos a qualidade construtiva, os projetos entregues, os processos de engenharia e aplicamos comunicação persuasiva orientada à conversão.</p>
+          </div>
+
+          <div>
+            <p style="font-size:11px;font-weight:700;text-transform:uppercase;color:var(--brand-deep);margin-bottom:4px;">RESULTADO ESPERADO</p>
+            <p style="font-size:14px;color:var(--text-primary);line-height:1.6;">Seu perfil atua como seu melhor representante comercial — apresentando a MDE com a credibilidade que ela merece e convencendo o decisor antes da primeira reunião.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="svc-card">
+        <div style="padding:28px;">
+          <h3 style="font-size:18px;font-weight:800;color:var(--brand-deep);margin-bottom:20px;">Autoridade no Setor (LinkedIn & Conteúdo Técnico)</h3>
+
+          <div style="margin-bottom:16px;">
+            <p style="font-size:11px;font-weight:700;text-transform:uppercase;color:var(--brand-deep);margin-bottom:4px;">O PROBLEMA QUE RESOLVE</p>
+            <p style="font-size:14px;color:var(--text-primary);line-height:1.6;">Engenheiros, diretores de obras e gestores industriais pesquisam a reputação da empresa antes de solicitar um orçamento — e não encontram nada que comprove a expertise técnica da MDE além das fotos de obras.</p>
+          </div>
+
+          <div style="margin-bottom:16px;">
+            <p style="font-size:11px;font-weight:700;text-transform:uppercase;color:var(--brand-deep);margin-bottom:4px;">COMO FUNCIONA</p>
+            <p style="font-size:13px;color:var(--text-secondary);line-height:1.6;">Construímos uma presença ativa nos canais onde decisores B2B consomem conteúdo técnico. Publicamos cases de projetos entregues, especificações construtivas e provas concretas de competência que posicionam a MDE como referência no setor metálico.</p>
+          </div>
+
+          <div>
+            <p style="font-size:11px;font-weight:700;text-transform:uppercase;color:var(--brand-deep);margin-bottom:4px;">RESULTADO ESPERADO</p>
+            <p style="font-size:14px;color:var(--text-primary);line-height:1.6;">O decisor chega à reunião de orçamento já convencido da capacidade técnica da MDE — reduzindo o ciclo de venda e aumentando a taxa de fechamento de contratos.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="svc-card">
+        <div style="padding:28px;">
+          <h3 style="font-size:18px;font-weight:800;color:var(--brand-deep);margin-bottom:20px;">Conversão Direta (Landing Page de Alta Performance)</h3>
+
+          <div style="margin-bottom:16px;">
+            <p style="font-size:11px;font-weight:700;text-transform:uppercase;color:var(--brand-deep);margin-bottom:4px;">O PROBLEMA QUE RESOLVE</p>
+            <p style="font-size:14px;color:var(--text-primary);line-height:1.6;">O tráfego pago e orgânico gera cliques, mas os visitantes chegam ao site ou perfil e saem sem solicitar orçamento — porque não existe uma página estruturada para converter a intenção de compra em ação imediata.</p>
+          </div>
+
+          <div style="margin-bottom:16px;">
+            <p style="font-size:11px;font-weight:700;text-transform:uppercase;color:var(--brand-deep);margin-bottom:4px;">COMO FUNCIONA</p>
+            <p style="font-size:13px;color:var(--text-secondary);line-height:1.6;">Criamos páginas de destino construídas especificamente para transformar o interesse do decisor em contato qualificado: com hierarquia visual clara, prova social técnica, formulário direto e chamada para ação irresistível.</p>
+          </div>
+
+          <div>
+            <p style="font-size:11px;font-weight:700;text-transform:uppercase;color:var(--brand-deep);margin-bottom:4px;">RESULTADO ESPERADO</p>
+            <p style="font-size:14px;color:var(--text-primary);line-height:1.6;">Cada real investido em anúncios trabalha com maior eficiência — porque o visitante encontra exatamente o que precisa ver para clicar em "solicitar orçamento" sem hesitação.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section style="background:var(--bg-base);padding:88px 24px;">
+  <div style="max-width:1000px;margin:0 auto;">
+    <h2 style="font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:-0.03em;margin:10px 0 16px;">
+      Nosso Processo: <span class="text-grad">Sem Caixas Pretas</span>
+    </h2>
+    <p style="color:var(--text-secondary);font-size:15px;line-height:1.8;max-width:600px;margin-bottom:48px;">
+      Uma jornada estruturada. Você acompanha cada etapa. <strong style="color:var(--text-primary);">Nada acontece sem que você saiba e aprove.</strong>
+    </p>
+
+    <div style="display:flex;flex-direction:column;gap:16px;">
+      <div class="card" style="padding:32px;">
+        <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start;">
+          <div style="width:56px;height:56px;border-radius:var(--radius-md);background:var(--grad-brand);
+            display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;">
+            <span style="color:#1A0F00;font-size:9px;font-weight:700;letter-spacing:.06em;">FASE</span>
+            <span style="color:#1A0F00;font-size:22px;font-weight:800;line-height:1;">1</span>
+          </div>
+          <div style="flex:1;min-width:200px;">
+            <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-bottom:16px;">
+              <h3 style="font-size:18px;font-weight:700;">Imersão e Estruturação Comercial</h3>
+              <span style="font-size:12px;font-weight:700;color:var(--brand-deep);letter-spacing:.04em;">Dias 1 a 30</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <div style="display:flex;gap:12px;"><div class="t-dot"></div><p style="color:var(--text-secondary);font-size:13px;line-height:1.7;">Reunião de alinhamento sobre portfólio de serviços, capacidade atual e foco de captação de projetos.</p></div>
+              <div style="display:flex;gap:12px;"><div class="t-dot"></div><p style="color:var(--text-secondary);font-size:13px;line-height:1.7;">Otimização avançada do site, Google Meu Negócio e redes sociais da MDE.</p></div>
+              <div style="display:flex;gap:12px;"><div class="t-dot"></div><p style="color:var(--text-secondary);font-size:13px;line-height:1.7;">Configuração das ferramentas de rastreamento para identificar a origem exata de cada orçamento recebido.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="padding:32px;">
+        <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start;">
+          <div style="width:56px;height:56px;border-radius:var(--radius-md);background:var(--grad-brand);
+            display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;">
+            <span style="color:#1A0F00;font-size:9px;font-weight:700;letter-spacing:.06em;">FASE</span>
+            <span style="color:#1A0F00;font-size:22px;font-weight:800;line-height:1;">2</span>
+          </div>
+          <div style="flex:1;min-width:200px;">
+            <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-bottom:16px;">
+              <h3 style="font-size:18px;font-weight:700;">Execução e Atração de Clientes</h3>
+              <span style="font-size:12px;font-weight:700;color:var(--brand-deep);letter-spacing:.04em;">Dias 31 a 60</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <div style="display:flex;gap:12px;"><div class="t-dot"></div><p style="color:var(--text-secondary);font-size:13px;line-height:1.7;">Lançamento das campanhas focadas no público decisor com alto poder de compra e projetos em andamento.</p></div>
+              <div style="display:flex;gap:12px;"><div class="t-dot"></div><p style="color:var(--text-secondary);font-size:13px;line-height:1.7;">Monitoramento diário do custo por lead e por solicitação de orçamento.</p></div>
+              <div style="display:flex;gap:12px;"><div class="t-dot"></div><p style="color:var(--text-secondary);font-size:13px;line-height:1.7;">Entrega do primeiro relatório com métricas de contatos e oportunidades geradas.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="padding:32px;">
+        <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start;">
+          <div style="width:56px;height:56px;border-radius:var(--radius-md);background:var(--grad-brand);
+            display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;">
+            <span style="color:#1A0F00;font-size:9px;font-weight:700;letter-spacing:.06em;">FASE</span>
+            <span style="color:#1A0F00;font-size:22px;font-weight:800;line-height:1;">3</span>
+          </div>
+          <div style="flex:1;min-width:200px;">
+            <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-bottom:16px;">
+              <h3 style="font-size:18px;font-weight:700;">Otimização e Escala</h3>
+              <span style="font-size:12px;font-weight:700;color:var(--brand-deep);letter-spacing:.04em;">Dias 61 em diante</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <div style="display:flex;gap:12px;"><div class="t-dot"></div><p style="color:var(--text-secondary);font-size:13px;line-height:1.7;">Refinamento contínuo: alocamos verba nos tipos de projetos que geram mais contatos qualificados e maior margem.</p></div>
+              <div style="display:flex;gap:12px;"><div class="t-dot"></div><p style="color:var(--text-secondary);font-size:13px;line-height:1.7;">Ações estratégicas de remarketing para impactar quem já demonstrou interesse, mas ainda não solicitou orçamento.</p></div>
+              <div style="display:flex;gap:12px;"><div class="t-dot"></div><p style="color:var(--text-secondary);font-size:13px;line-height:1.7;">Reunião mensal de performance e planejamento estratégico de captação.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="investimento" style="background:var(--bg-surface);padding:88px 24px;">
+  <div style="max-width:1000px;margin:0 auto;">
+    <h2 style="font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:-0.03em;margin:10px 0 16px;">
+      O Investimento no seu <span class="text-grad">Crescimento</span>
+    </h2>
+    <p style="color:var(--text-secondary);font-size:15px;line-height:1.8;max-width:700px;margin-bottom:64px;">
+      Ter a Clarituz ao seu lado custa muito menos que o lucro de um único projeto bem fechado, mas entrega a inteligência e as ferramentas de uma equipe sênior completa trabalhando para a MDE.
+    </p>
+
+    <div style="margin-bottom:64px;">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px;">
+        <div style="width:6px;height:6px;border-radius:50%;background:var(--brand-deep);"></div>
+        <h3 style="font-size:clamp(18px,2.5vw,24px);font-weight:800;letter-spacing:-.02em;color:var(--text-primary);">Vitrine Digital (Social Media Instagram)</h3>
+        <div style="flex:1;height:0.5px;background:var(--border);"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;align-items:stretch;">
+
+        <div class="plan-card" style="padding:28px;">
+          <p style="font-size:10px;color:var(--text-secondary);font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px;">Básico</p>
+          <p style="font-size:36px;font-weight:800;letter-spacing:-.03em;margin-bottom:4px;">
+            <span style="font-size:18px;font-weight:500;color:var(--text-secondary);">R$</span>
+            <span class="text-grad">1.290</span>
+            <span style="font-size:14px;font-weight:400;color:var(--text-secondary);">/mês</span>
+          </p>
+          <div style="height:2px;background:var(--border-strong);border-radius:2px;margin:16px 0 20px;"></div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-primary);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M5 13l4 4L19 7"/></svg>1 post carrossel ou estático por semana (4 postagens no mês)</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-primary);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M5 13l4 4L19 7"/></svg>2 Reels por mês (Incluso filmmaker profissional)</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-primary);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M5 13l4 4L19 7"/></svg>3 stories por semana</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-primary);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M5 13l4 4L19 7"/></svg>Gestão de DM's e comentários</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-primary);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M5 13l4 4L19 7"/></svg>Relatório mensal de performance</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-primary);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M5 13l4 4L19 7"/></svg>Estratégia + planejamento + calendário de postagens</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-primary);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M5 13l4 4L19 7"/></svg>Captação presencial</div>
+          </div>
+        </div>
+
+        <div class="plan-card" style="padding:28px;">
+          <p style="font-size:10px;color:var(--text-secondary);font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px;">Essencial</p>
+          <p style="font-size:36px;font-weight:800;letter-spacing:-.03em;margin-bottom:4px;">
+            <span style="font-size:18px;font-weight:500;color:var(--text-secondary);">R$</span>
+            <span class="text-grad">1.690</span>
+            <span style="font-size:14px;font-weight:400;color:var(--text-secondary);">/mês</span>
+          </p>
+          <div style="height:2px;background:var(--border-strong);border-radius:2px;margin:16px 0 20px;"></div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-primary);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M5 13l4 4L19 7"/></svg>3 posts carrosseis ou estáticos por semana (12 postagens no mês)</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-primary);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M5 13l4 4L19 7"/></svg>3 stories por semana</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-primary);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M5 13l4 4L19 7"/></svg>1 Reels por semana (4 reels no mês — Incluso filmmaker profissional)</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-primary);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M5 13l4 4L19 7"/></svg>Gestão de DM's e comentários</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-primary);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M5 13l4 4L19 7"/></svg>Relatório mensal de performance</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-primary);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M5 13l4 4L19 7"/></svg>Estratégia + planejamento + calendário de postagens</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-primary);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M5 13l4 4L19 7"/></svg>Captação presencial</div>
+          </div>
+        </div>
+
+        <div class="plan-featured" style="padding:28px;z-index:2;">
+          <div class="ribbon">⭐ Máxima Presença</div>
+          <p style="font-size:10px;color:var(--brand-deep);font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px;">Pro</p>
+          <p style="font-size:36px;font-weight:800;letter-spacing:-.03em;margin-bottom:4px;">
+            <span style="font-size:18px;font-weight:500;color:var(--text-secondary);">R$</span>
+            <span class="text-grad">1.990</span>
+            <span style="font-size:14px;font-weight:400;color:var(--text-secondary);">/mês</span>
+          </p>
+          <div style="height:2px;background:rgba(245,166,35,0.20);border-radius:2px;margin:16px 0 20px;"></div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-primary);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand-deep)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M5 13l4 4L19 7"/></svg>5 posts carrosseis ou estáticos por semana (20 postagens no mês)</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-primary);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand-deep)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M5 13l4 4L19 7"/></svg>3 stories por semana</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-primary);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand-deep)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M5 13l4 4L19 7"/></svg>2 Reels por semana (8 reels no mês — Incluso filmmaker profissional)</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-primary);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand-deep)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M5 13l4 4L19 7"/></svg>Gestão de DM's e comentários</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-primary);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand-deep)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M5 13l4 4L19 7"/></svg>Relatório mensal de performance</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-primary);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand-deep)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M5 13l4 4L19 7"/></svg>Estratégia + planejamento + calendário de postagens</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-primary);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand-deep)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M5 13l4 4L19 7"/></svg>Captação presencial</div>
+          </div>
+        </div>
+
+      </div>
+      <p style="font-size:13px;color:var(--text-secondary);margin-top:16px;padding-left:4px;">* Em todos os pacotes as postagens, legendas e gerenciamento são feitos pela Clarituz.</p>
+      <p style="font-size:13px;color:var(--text-secondary);margin-top:8px;padding-left:4px;">* Custo de deslocamento para captação a combinar (varia de acordo com a distância).</p>
+    </div>
+
+    <div style="margin-bottom:64px;">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px;">
+        <div style="width:6px;height:6px;border-radius:50%;background:var(--brand-deep);"></div>
+        <h3 style="font-size:clamp(18px,2.5vw,24px);font-weight:800;letter-spacing:-.02em;color:var(--text-primary);">Tráfego Pago (Meta Ads Instagram)</h3>
+        <div style="flex:1;height:0.5px;background:var(--border);"></div>
+      </div>
+
+      <div style="margin-bottom:20px;padding:20px 24px;border-radius:var(--radius-md);
+        background:var(--bg-charcoal);border:0.5px solid var(--border-charcoal); box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+        <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--brand);margin-bottom:12px;">Incluso em todos os planos</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;">
+          <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-light);"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M5 13l4 4L19 7"/></svg>Planejamento estratégico de campanhas</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-light);"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M5 13l4 4L19 7"/></svg>Gestão e otimização contínua</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-light);"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M5 13l4 4L19 7"/></svg>Relatórios de resultados</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-light);"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M5 13l4 4L19 7"/></svg>Configuração e estruturação de anúncios</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-light);"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M5 13l4 4L19 7"/></svg>Testes A/B de campanhas</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-light);"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M5 13l4 4L19 7"/></svg>Suporte e alinhamento estratégico</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-light);"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M5 13l4 4L19 7"/></svg>Criação e segmentação de públicos</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-light);"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M5 13l4 4L19 7"/></svg>Análise de métricas e performance</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-light);"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M5 13l4 4L19 7"/></svg>Acompanhamento semanal</div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;align-items:stretch;">
+
+        <div class="plan-card" style="padding:28px;">
+          <p style="font-size:10px;color:var(--text-secondary);font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px;">Plano 1</p>
+          <p style="font-size:36px;font-weight:800;letter-spacing:-.03em;margin-bottom:4px;">
+            <span style="font-size:18px;font-weight:500;color:var(--text-secondary);">R$</span>
+            <span class="text-grad">900</span>
+            <span style="font-size:14px;font-weight:400;color:var(--text-secondary);">/mês</span>
+          </p>
+          <p style="color:var(--text-primary);font-size:12px;margin-bottom:16px;">Gerenciamento de até R$ 1.200 de verba mensal</p>
+          <div style="height:2px;background:var(--border-strong);border-radius:2px;margin:0 0 20px;"></div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-primary);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M5 13l4 4L19 7"/></svg>Plataformas: Facebook e Instagram</div>
+        </div>
+
+        <div class="plan-card" style="padding:28px;">
+          <p style="font-size:10px;color:var(--text-secondary);font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px;">Plano 2</p>
+          <p style="font-size:36px;font-weight:800;letter-spacing:-.03em;margin-bottom:4px;">
+            <span style="font-size:18px;font-weight:500;color:var(--text-secondary);">R$</span>
+            <span class="text-grad">1.000</span>
+            <span style="font-size:14px;font-weight:400;color:var(--text-secondary);">/mês</span>
+          </p>
+          <p style="color:var(--text-primary);font-size:12px;margin-bottom:16px;">Gerenciamento de até R$ 2.000 de verba mensal</p>
+          <div style="height:2px;background:var(--border-strong);border-radius:2px;margin:0 0 20px;"></div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-primary);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M5 13l4 4L19 7"/></svg>Plataformas: Facebook e Instagram</div>
+        </div>
+
+        <div class="plan-featured" style="padding:28px;z-index:2;">
+          <div class="ribbon">⭐ Maior Alcance</div>
+          <p style="font-size:10px;color:var(--brand-deep);font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px;">Plano 3</p>
+          <p style="font-size:36px;font-weight:800;letter-spacing:-.03em;margin-bottom:4px;">
+            <span style="font-size:18px;font-weight:500;color:var(--text-secondary);">R$</span>
+            <span class="text-grad">1.190</span>
+            <span style="font-size:14px;font-weight:400;color:var(--text-secondary);">/mês</span>
+          </p>
+          <p style="color:var(--text-primary);font-size:12px;margin-bottom:16px;">Gerenciamento de até R$ 3.000 de verba mensal</p>
+          <div style="height:2px;background:rgba(245,166,35,0.20);border-radius:2px;margin:0 0 20px;"></div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-primary);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand-deep)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M5 13l4 4L19 7"/></svg>Plataformas: Facebook e Instagram</div>
+        </div>
+
+      </div>
+    </div>
+
+    <div style="margin-bottom:64px;">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px;">
+        <div style="width:6px;height:6px;border-radius:50%;background:var(--brand-deep);"></div>
+        <h3 style="font-size:clamp(18px,2.5vw,24px);font-weight:800;letter-spacing:-.02em;color:var(--text-primary);">Tráfego Pago (Google Ads)</h3>
+        <div style="flex:1;height:0.5px;background:var(--border);"></div>
+      </div>
+
+      <div style="margin-bottom:20px;padding:20px 24px;border-radius:var(--radius-md);
+        background:var(--bg-charcoal);border:0.5px solid var(--border-charcoal); box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+        <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--brand);margin-bottom:12px;">Incluso em todos os planos</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;">
+          <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-light);"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M5 13l4 4L19 7"/></svg>Planejamento estratégico de campanhas</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-light);"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M5 13l4 4L19 7"/></svg>Gestão e otimização contínua</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-light);"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M5 13l4 4L19 7"/></svg>Relatórios de resultados</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-light);"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M5 13l4 4L19 7"/></svg>Configuração e estruturação de anúncios</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-light);"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M5 13l4 4L19 7"/></svg>Testes A/B de campanhas</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-light);"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M5 13l4 4L19 7"/></svg>Suporte e alinhamento estratégico</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-light);"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M5 13l4 4L19 7"/></svg>Criação e segmentação de públicos</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-light);"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M5 13l4 4L19 7"/></svg>Análise de métricas e performance</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-light);"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M5 13l4 4L19 7"/></svg>Acompanhamento semanal</div>
+          <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-light);font-weight:600;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M5 13l4 4L19 7"/></svg>02 landing pages como cortesia</div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;align-items:stretch;">
+
+        <div class="plan-card" style="padding:28px;">
+          <p style="font-size:10px;color:var(--text-secondary);font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px;">Plano 1</p>
+          <p style="font-size:36px;font-weight:800;letter-spacing:-.03em;margin-bottom:4px;">
+            <span style="font-size:18px;font-weight:500;color:var(--text-secondary);">R$</span>
+            <span class="text-grad">900</span>
+            <span style="font-size:14px;font-weight:400;color:var(--text-secondary);">/mês</span>
+          </p>
+          <p style="color:var(--text-primary);font-size:12px;margin-bottom:16px;">Gerenciamento de até R$ 1.200 de verba mensal</p>
+          <div style="height:2px;background:var(--border-strong);border-radius:2px;margin:0 0 20px;"></div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-primary);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M5 13l4 4L19 7"/></svg>Plataforma: Google Ads</div>
+        </div>
+
+        <div class="plan-card" style="padding:28px;">
+          <p style="font-size:10px;color:var(--text-secondary);font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px;">Plano 2</p>
+          <p style="font-size:36px;font-weight:800;letter-spacing:-.03em;margin-bottom:4px;">
+            <span style="font-size:18px;font-weight:500;color:var(--text-secondary);">R$</span>
+            <span class="text-grad">1.200</span>
+            <span style="font-size:14px;font-weight:400;color:var(--text-secondary);">/mês</span>
+          </p>
+          <p style="color:var(--text-primary);font-size:12px;margin-bottom:16px;">Gerenciamento de até R$ 2.000 de verba mensal</p>
+          <div style="height:2px;background:var(--border-strong);border-radius:2px;margin:0 0 20px;"></div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-primary);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M5 13l4 4L19 7"/></svg>Plataforma: Google Ads</div>
+        </div>
+
+        <div class="plan-featured" style="padding:28px;z-index:2;">
+          <div class="ribbon">⭐ Maior Alcance</div>
+          <p style="font-size:10px;color:var(--brand-deep);font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px;">Plano 3</p>
+          <p style="font-size:36px;font-weight:800;letter-spacing:-.03em;margin-bottom:4px;">
+            <span style="font-size:18px;font-weight:500;color:var(--text-secondary);">R$</span>
+            <span class="text-grad">1.500</span>
+            <span style="font-size:14px;font-weight:400;color:var(--text-secondary);">/mês</span>
+          </p>
+          <p style="color:var(--text-primary);font-size:12px;margin-bottom:16px;">Gerenciamento de até R$ 3.000 de verba mensal</p>
+          <div style="height:2px;background:rgba(245,166,35,0.20);border-radius:2px;margin:0 0 20px;"></div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-primary);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand-deep)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M5 13l4 4L19 7"/></svg>Plataforma: Google Ads</div>
+        </div>
+
+      </div>
+    </div>
+
+    <div style="margin-bottom:64px;">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+        <div style="width:6px;height:6px;border-radius:50%;background:var(--brand-deep);"></div>
+        <h3 style="font-size:clamp(18px,2.5vw,24px);font-weight:800;letter-spacing:-.02em;color:var(--text-primary);">Mentoria</h3>
+        <div style="flex:1;height:0.5px;background:var(--border);"></div>
+      </div>
+      <p style="color:var(--text-secondary);font-size:14px;line-height:1.75;max-width:680px;margin-bottom:24px;">
+        Acompanhamento contínuo — além da estratégia, você recebe suporte, direcionamento prático e ajustes ao longo do processo. Ideal para quem quer aprender, ter acompanhamento e evoluir com mais segurança e consistência.
+      </p>
+      
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;align-items:stretch;">
+
+        <div class="plan-card" style="padding:28px;">
+          <p style="font-size:10px;color:var(--text-secondary);font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px;">Light</p>
+          <p style="font-size:36px;font-weight:800;letter-spacing:-.03em;margin-bottom:4px;">
+            <span style="font-size:18px;font-weight:500;color:var(--text-secondary);">R$</span>
+            <span class="text-grad">400</span>
+            <span style="font-size:14px;font-weight:400;color:var(--text-secondary);">/mês</span>
+          </p>
+          <div style="height:2px;background:var(--border-strong);border-radius:2px;margin:16px 0 20px;"></div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-primary);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M5 13l4 4L19 7"/></svg>2 encontros por mês</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-primary);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M5 13l4 4L19 7"/></svg>Suporte básico</div>
+          </div>
+        </div>
+
+        <div class="plan-card" style="padding:28px;">
+          <p style="font-size:10px;color:var(--text-secondary);font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px;">Estratégica</p>
+          <p style="font-size:36px;font-weight:800;letter-spacing:-.03em;margin-bottom:4px;">
+            <span style="font-size:18px;font-weight:500;color:var(--text-secondary);">R$</span>
+            <span class="text-grad">700</span>
+            <span style="font-size:14px;font-weight:400;color:var(--text-secondary);">/mês</span>
+          </p>
+          <div style="height:2px;background:var(--border-strong);border-radius:2px;margin:16px 0 20px;"></div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-primary);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M5 13l4 4L19 7"/></svg>4 encontros por mês</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-primary);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M5 13l4 4L19 7"/></svg>Plano de crescimento</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-primary);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M5 13l4 4L19 7"/></svg>Acompanhamento</div>
+          </div>
+        </div>
+
+        <div class="plan-featured" style="padding:28px;z-index:2;">
+          <div class="ribbon">⭐ Máximo Resultado</div>
+          <p style="font-size:10px;color:var(--brand-deep);font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px;">Intensiva</p>
+          <p style="font-size:36px;font-weight:800;letter-spacing:-.03em;margin-bottom:4px;">
+            <span style="font-size:18px;font-weight:500;color:var(--text-secondary);">R$</span>
+            <span class="text-grad">1.000</span>
+            <span style="font-size:14px;font-weight:400;color:var(--text-secondary);">/mês</span>
+          </p>
+          <div style="height:2px;background:rgba(245,166,35,0.20);border-radius:2px;margin:16px 0 20px;"></div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-primary);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand-deep)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M5 13l4 4L19 7"/></svg>4 encontros por mês</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-primary);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand-deep)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M5 13l4 4L19 7"/></svg>Suporte diário</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-primary);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand-deep)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M5 13l4 4L19 7"/></svg>Revisão de conteúdos</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-primary);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--brand-deep)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M5 13l4 4L19 7"/></svg>Ajustes semanais</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    
+    <div style="padding:20px 24px;border-radius:var(--radius-md);
+      background:rgba(245,166,35,0.08);border:0.5px solid rgba(245,166,35,0.35);
+      font-size:13px;color:var(--text-primary);line-height:1.7;">
+      <strong style="color:var(--brand-deep);">Transparência sobre o orçamento de anúncios:</strong> Os valores investidos para exibir as campanhas são pagos por você diretamente ao Google ou Meta (sem taxas nossas). Para contratos de alto ticket no setor de construção, sugerimos iniciar com no mínimo R$ 800 a R$ 1.500/mês. Você sempre decide o teto de investimento diário.
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section style="background:var(--bg-surface);padding:88px 24px;">
+  <div style="max-width:1000px;margin:0 auto;">
+    <div style="position:relative;padding:48px 32px;border-radius:var(--radius-xl);
+      border:0.5px solid rgba(245,166,35,0.40);
+      background:linear-gradient(135deg,rgba(245,166,35,0.12) 0%,rgba(245,166,35,0.03) 100%);
+      text-align:center;">
+      <div class="ribbon">🎁 Condição Exclusiva · Decisão em 7 dias</div>
+      <h2 style="font-size:clamp(22px,3.5vw,34px);font-weight:800;letter-spacing:-.02em;margin-bottom:8px;">
+        Fechando a parceria nos próximos <span class="text-grad">7 dias</span> você garante:
+      </h2>
+      <p style="color:var(--text-secondary);font-size:13px;margin-bottom:40px;">*Condições válidas para o Plano Crescimento.</p>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;text-align:left;">
+        <div style="padding:20px 22px;border-radius:var(--radius-md);
+          background:rgba(255,255,255,0.5);border:0.5px solid rgba(245,166,35,0.20);">
+          <span style="font-size:28px;display:block;margin-bottom:12px;">📸</span>
+          <h4 style="font-size:13px;font-weight:700;margin-bottom:6px;">Sessão Fotográfica Premium</h4>
+          <p style="color:var(--text-secondary);font-size:13px;line-height:1.6;">Registro profissional de alta resolução dos seus projetos entregues e instalações para valorizar o portfólio digital da MDE e gerar credibilidade imediata com novos clientes.</p>
+        </div>
+        <div style="padding:20px 22px;border-radius:var(--radius-md);
+          background:rgba(255,255,255,0.5);border:0.5px solid rgba(245,166,35,0.20);">
+          <span style="font-size:28px;display:block;margin-bottom:12px;">💰</span>
+          <h4 style="font-size:13px;font-weight:700;margin-bottom:6px;">20% de Desconto</h4>
+          <p style="color:var(--text-secondary);font-size:13px;line-height:1.6;">Nos 4 primeiros meses do plano contratado.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cta" style="
+  background:radial-gradient(ellipse 80% 60% at 50% 100%, rgba(245,166,35,0.15) 0%, transparent 70%), var(--bg-surface);
+  padding:112px 24px;text-align:center;">
+  <div style="max-width:700px;margin:0 auto;">
+    <span class="pill" style="margin-bottom:24px;display:inline-flex;">O próximo passo é simples</span>
+    <h2 style="font-size:clamp(32px,5vw,52px);font-weight:800;letter-spacing:-.03em;line-height:1.1;margin-bottom:20px;">
+      Pronto para acelerar a captação de contratos da<br/><span class="text-grad">MDE Estruturas Metálicas?</span>
+    </h2>
+    <p style="color:var(--text-secondary);font-size:17px;line-height:1.75;margin-bottom:48px;">
+      Não precisamos de meses para começar a agir. Veja como funciona o início do nosso projeto juntos:
+    </p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;text-align:left;margin-bottom:48px;">
+      <div style="padding:24px;border-radius:var(--radius-md);background:var(--bg-charcoal);border:0.5px solid var(--border-charcoal);box-shadow: 0 8px 24px rgba(0,0,0,0.1);">
+        <span style="color:var(--brand);font-weight:800;font-size:20px;margin-bottom:8px;display:block;">1.</span>
+        <h4 style="font-weight:700;font-size:14px;color:var(--text-light);margin-bottom:6px;">O "Sim"</h4>
+        <p style="color:rgba(255,255,255,0.7);font-size:13px;line-height:1.6;">Você nos chama no WhatsApp e confirma o interesse na proposta.</p>
+      </div>
+      <div style="padding:24px;border-radius:var(--radius-md);background:var(--bg-charcoal);border:0.5px solid var(--border-charcoal);box-shadow: 0 8px 24px rgba(0,0,0,0.1);">
+        <span style="color:var(--brand);font-weight:800;font-size:20px;margin-bottom:8px;display:block;">2.</span>
+        <h4 style="font-weight:700;font-size:14px;color:var(--text-light);margin-bottom:6px;">O Alinhamento</h4>
+        <p style="color:rgba(255,255,255,0.7);font-size:13px;line-height:1.6;">Agendamos uma ligação rápida (30 min) para definir o foco comercial e os projetos prioritários para captação.</p>
+      </div>
+      <div style="padding:24px;border-radius:var(--radius-md);background:var(--bg-charcoal);border:0.5px solid var(--border-charcoal);box-shadow: 0 8px 24px rgba(0,0,0,0.1);">
+        <span style="color:var(--brand);font-weight:800;font-size:20px;margin-bottom:8px;display:block;">3.</span>
+        <h4 style="font-weight:700;font-size:14px;color:var(--text-light);margin-bottom:6px;">A Execução</h4>
+        <p style="color:rgba(255,255,255,0.7);font-size:13px;line-height:1.6;">Iniciamos a Fase 1 imediatamente na semana seguinte.</p>
+      </div>
+    </div>
+
+    <div style="margin-bottom:48px;padding:18px 24px;background:#FFFFFF;border-left:4px solid var(--brand-deep);border-radius:var(--radius-sm);display:inline-block;box-shadow: 0 4px 16px rgba(0,0,0,0.04);">
+      <p style="color:var(--text-primary);font-size:14px;font-weight:600;">
+        <span style="color:var(--brand-deep);">⚠️ Atenção:</span> Temos apenas 2 vagas na agência este mês para garantir dedicação total ao seu projeto.
+      </p>
+    </div>
+
+   <div style="display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin-bottom:48px;">
+      <a href="https://wa.me/5519992837133" target="_blank" rel="noopener noreferrer" class="btn-primary" style="font-size:16px;padding:18px 40px;">💬 Chamar no WhatsApp Agora</a>
+    </div>
+    
+    <div style="height:0.5px;background:var(--border);margin-bottom:28px;"></div>
+    <p style="color:var(--text-secondary);font-size:13px;">Copyright © 2026 · Clarituz Agência | Marketing & Tecnologia · Todos os direitos reservados.</p>
+  </div>
+</section>
+
+<script>
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.10 });
+
+  document.querySelectorAll('.card, .plan-featured, .svc-card, h2, section > div > p').forEach(el => {
+    if (!el.closest('nav')) {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(18px)';
+      el.style.transition = 'opacity .55s ease, transform .55s ease';
+      io.observe(el);
+    }
+  });
+</script>
+
+</body>
+</html>
