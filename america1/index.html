@@ -1,0 +1,1474 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Proposta Comercial — América 1 Climatização</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── Design Tokens ─────────────────────────────────────────── */
+    :root {
+      /* Colors */
+      --navy:        #0D1B3E;
+      --navy-light:  #1A2F5E;
+      --gold:        #C9962A;
+      --gold-light:  #F5E4B8;
+      --red:         #B91C1C;
+      --white:       #FFFFFF;
+      --surface:     #F9F9F7;
+      --surface-alt: #F2F2EF;
+      --border:      #E4E4E0;
+      --text-primary:   #0D1B3E;
+      --text-secondary: #5A6172;
+      --text-muted:     #9CA3AF;
+
+      /* Typography */
+      --font: 'Inter', system-ui, sans-serif;
+      --text-xs:   0.75rem;
+      --text-sm:   0.875rem;
+      --text-base: 1rem;
+      --text-lg:   1.125rem;
+      --text-xl:   1.25rem;
+      --text-2xl:  1.5rem;
+      --text-3xl:  1.875rem;
+      --text-4xl:  2.25rem;
+
+      /* Spacing */
+      --space-1: 0.25rem;
+      --space-2: 0.5rem;
+      --space-3: 0.75rem;
+      --space-4: 1rem;
+      --space-6: 1.5rem;
+      --space-8: 2rem;
+      --space-12: 3rem;
+      --space-16: 4rem;
+      --space-20: 5rem;
+
+      /* Radius */
+      --radius-sm: 3px;
+      --radius-md: 6px;
+      --radius-lg: 8px;
+      --radius-xl: 10px;
+
+      /* Shadows */
+      --shadow-sm: 0 1px 4px rgba(13,27,62,.06);
+      --shadow-md: 0 4px 20px rgba(13,27,62,.08);
+      --shadow-lg: 0 8px 40px rgba(13,27,62,.12);
+    }
+
+    /* ─── Reset ─────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      font-size: var(--text-base);
+      color: var(--text-primary);
+      background: var(--surface);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── Layout ─────────────────────────────────────────────────── */
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 var(--space-6);
+    }
+
+    /* ─── Top Accent Bar ─────────────────────────────────────────── */
+    .accent-bar {
+      height: 4px;
+      background: linear-gradient(90deg, var(--navy) 0%, var(--gold) 50%, var(--red) 100%);
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+    }
+
+    /* ─── Header ─────────────────────────────────────────────────── */
+    .header {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: var(--space-16) 0 var(--space-12);
+      margin-top: 4px;
+    }
+
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: var(--space-8);
+    }
+
+    .agency-name {
+      font-size: var(--text-sm);
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: var(--space-2);
+    }
+
+    .proposal-title {
+      font-size: var(--text-4xl);
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.15;
+      letter-spacing: -.02em;
+    }
+
+    .proposal-title span {
+      display: block;
+      font-weight: 300;
+      color: var(--text-secondary);
+      font-size: var(--text-2xl);
+    }
+
+    .header-meta {
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      margin-bottom: var(--space-3);
+    }
+
+    .meta-label {
+      font-size: var(--text-xs);
+      font-weight: 500;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .meta-value {
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-1) var(--space-3);
+      border-radius: 999px;
+      font-size: var(--text-xs);
+      font-weight: 600;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .badge-gold {
+      background: var(--gold-light);
+      color: #7A5A10;
+    }
+
+    /* ─── Nav ────────────────────────────────────────────────────── */
+    .nav {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 4px;
+      z-index: 90;
+    }
+
+    .nav-inner {
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .nav-inner::-webkit-scrollbar { display: none; }
+
+    .nav-link {
+      font-size: var(--text-xs);
+      font-weight: 500;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: var(--space-4) var(--space-6);
+      border-bottom: 2px solid transparent;
+      white-space: nowrap;
+      transition: color .2s, border-color .2s;
+    }
+
+    .nav-link:hover {
+      color: var(--navy);
+      border-bottom-color: var(--gold);
+    }
+
+    /* ─── Main ───────────────────────────────────────────────────── */
+    main {
+      padding: var(--space-16) 0;
+    }
+
+    /* ─── Section ────────────────────────────────────────────────── */
+    .section {
+      margin-bottom: var(--space-16);
+    }
+
+    .section-header {
+      margin-bottom: var(--space-8);
+    }
+
+    .section-eyebrow {
+      font-size: var(--text-xs);
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: var(--space-2);
+    }
+
+    .section-title {
+      font-size: var(--text-2xl);
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: -.02em;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: var(--space-16) 0;
+    }
+
+    /* ─── Cards ──────────────────────────────────────────────────── */
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-8);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .card + .card {
+      margin-top: var(--space-4);
+    }
+
+    .card-accent {
+      border-left: 3px solid var(--gold);
+    }
+
+    /* ─── Info Grid (Dados do Cliente) ───────────────────────────── */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: var(--space-4);
+    }
+
+    .info-item {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: var(--space-4) var(--space-6);
+    }
+
+    .info-label {
+      font-size: var(--text-xs);
+      font-weight: 500;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: var(--space-1);
+    }
+
+    .info-value {
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    /* ─── Pillars ────────────────────────────────────────────────── */
+    .pillars {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      margin-top: var(--space-4);
+    }
+
+    .pillar {
+      padding: var(--space-2) var(--space-4);
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-size: var(--text-xs);
+      font-weight: 600;
+      color: var(--navy);
+      letter-spacing: .04em;
+    }
+
+    /* ─── Certifications ─────────────────────────────────────────── */
+    .cert-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: var(--space-3);
+      margin-top: var(--space-4);
+    }
+
+    .cert-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      padding: var(--space-3) var(--space-4);
+      background: var(--surface-alt);
+      border-radius: var(--radius-md);
+      font-size: var(--text-sm);
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    .cert-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+
+    /* ─── Module cards ───────────────────────────────────────────── */
+    .module {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-bottom: var(--space-8);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .module-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--space-6) var(--space-8);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .module-header-left {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+    }
+
+    .module-number {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-md);
+      background: var(--navy);
+      color: var(--white);
+      font-size: var(--text-sm);
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .module-title {
+      font-size: var(--text-lg);
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .module-subtitle {
+      font-size: var(--text-sm);
+      color: var(--text-muted);
+    }
+
+    .module-deadline {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-2) var(--space-4);
+      background: var(--surface-alt);
+      border-radius: 999px;
+      font-size: var(--text-xs);
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .module-body {
+      padding: var(--space-8);
+    }
+
+    .service-item {
+      padding: var(--space-6) 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .service-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .service-item:first-child {
+      padding-top: 0;
+    }
+
+    .service-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: var(--space-4);
+      margin-bottom: var(--space-2);
+    }
+
+    .service-name {
+      font-size: var(--text-base);
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    .service-price {
+      font-size: var(--text-base);
+      font-weight: 700;
+      color: var(--navy);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .service-price.courtesy {
+      color: var(--gold);
+      background: var(--gold-light);
+      padding: 2px var(--space-3);
+      border-radius: 999px;
+      font-size: var(--text-xs);
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .service-desc {
+      font-size: var(--text-sm);
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .module-footer {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: var(--space-4);
+      padding: var(--space-4) var(--space-8);
+      background: var(--surface-alt);
+      border-top: 1px solid var(--border);
+    }
+
+    .subtotal-label {
+      font-size: var(--text-sm);
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+
+    .subtotal-value {
+      font-size: var(--text-xl);
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    /* ─── Timeline ───────────────────────────────────────────────── */
+    .timeline-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: var(--space-8);
+    }
+
+    .timeline-table th {
+      font-size: var(--text-xs);
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      padding: var(--space-3) var(--space-4);
+      text-align: left;
+      background: var(--surface-alt);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .timeline-table th:last-child { text-align: right; }
+
+    .timeline-table td {
+      padding: var(--space-4);
+      font-size: var(--text-sm);
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+
+    .timeline-table tr:last-child td { border-bottom: none; }
+
+    .timeline-table td strong {
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    .timeline-table td:last-child {
+      text-align: right;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .gantt {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .gantt-header {
+      display: grid;
+      grid-template-columns: 200px 1fr 1fr 1fr;
+      padding: var(--space-3) var(--space-6);
+      background: var(--surface-alt);
+      border-bottom: 1px solid var(--border);
+      font-size: var(--text-xs);
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .gantt-row {
+      display: grid;
+      grid-template-columns: 200px 1fr 1fr 1fr;
+      padding: var(--space-4) var(--space-6);
+      border-bottom: 1px solid var(--border);
+      align-items: center;
+    }
+
+    .gantt-row:last-child { border-bottom: none; }
+
+    .gantt-label {
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    .gantt-bar-cell {
+      padding: 0 var(--space-2);
+    }
+
+    .gantt-bar {
+      height: 10px;
+      border-radius: 999px;
+      background: var(--surface-alt);
+    }
+
+    .gantt-bar-fill {
+      height: 100%;
+      border-radius: 999px;
+    }
+
+    .bar-p1 { background: linear-gradient(90deg, var(--navy), var(--navy-light)); width: 100%; }
+    .bar-p2 { background: linear-gradient(90deg, var(--gold), #E8B04A); width: 100%; }
+    .bar-p3 { background: linear-gradient(90deg, #B91C1C, #DC2626); width: 100%; }
+
+    .note-box {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-3);
+      background: var(--gold-light);
+      border: 1px solid #E8D08A;
+      border-radius: var(--radius-md);
+      padding: var(--space-4) var(--space-5);
+      font-size: var(--text-sm);
+      color: #7A5A10;
+      margin-top: var(--space-4);
+    }
+
+    /* ─── Summary Table ──────────────────────────────────────────── */
+    .summary-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .summary-table th {
+      font-size: var(--text-xs);
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      padding: var(--space-4) var(--space-8);
+      text-align: left;
+      background: var(--surface-alt);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .summary-table th:last-child { text-align: right; }
+
+    .summary-table td {
+      padding: var(--space-6) var(--space-8);
+      font-size: var(--text-sm);
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+
+    .summary-table td:last-child {
+      text-align: right;
+      font-weight: 700;
+      font-size: var(--text-base);
+      color: var(--navy);
+    }
+
+    .summary-table .total-row {
+      background: var(--navy);
+    }
+
+    .summary-table .total-row td {
+      color: var(--white);
+      border-bottom: none;
+      font-size: var(--text-base);
+      font-weight: 700;
+      padding: var(--space-6) var(--space-8);
+    }
+
+    .summary-table .total-row td:last-child {
+      color: var(--gold);
+      font-size: var(--text-xl);
+    }
+
+    .module-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: var(--text-xs);
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      margin-bottom: var(--space-1);
+    }
+
+    .tag-p1 { background: #EEF0F8; color: var(--navy); }
+    .tag-p2 { background: var(--gold-light); color: #7A5A10; }
+    .tag-p3 { background: #FEE2E2; color: #B91C1C; }
+
+    /* ─── Payment ────────────────────────────────────────────────── */
+    .payment-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: var(--space-4);
+      margin-bottom: var(--space-8);
+    }
+
+    .payment-card {
+      background: var(--white);
+      border: 2px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-6);
+      transition: border-color .2s, box-shadow .2s;
+      cursor: default;
+    }
+
+    .payment-card:hover {
+      border-color: var(--gold);
+      box-shadow: var(--shadow-md);
+    }
+
+    .payment-option-label {
+      font-size: var(--text-xs);
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: var(--space-2);
+    }
+
+    .payment-card-title {
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: var(--space-1);
+    }
+
+    .payment-card-value {
+      font-size: var(--text-xl);
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.2;
+    }
+
+    .payment-card-detail {
+      font-size: var(--text-xs);
+      color: var(--text-muted);
+      margin-top: var(--space-1);
+    }
+
+    /* ─── Module D Table ─────────────────────────────────────────── */
+    .payment-breakdown {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .payment-breakdown table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .payment-breakdown th {
+      font-size: var(--text-xs);
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      padding: var(--space-3) var(--space-6);
+      text-align: left;
+      background: var(--surface-alt);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .payment-breakdown td {
+      padding: var(--space-4) var(--space-6);
+      font-size: var(--text-sm);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .payment-breakdown tr:last-child td { border-bottom: none; }
+
+    .parcela-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--navy);
+      color: var(--white);
+      font-size: var(--text-xs);
+      font-weight: 700;
+    }
+
+    /* ─── Conditions ─────────────────────────────────────────────── */
+    .conditions-list {
+      list-style: none;
+    }
+
+    .conditions-list li {
+      padding: var(--space-3) 0;
+      font-size: var(--text-sm);
+      color: var(--text-secondary);
+      line-height: 1.7;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .conditions-list li:first-child { padding-top: 0; }
+    .conditions-list li:last-child  { border-bottom: none; padding-bottom: 0; }
+
+    /* ─── Acceptance ─────────────────────────────────────────────── */
+    .acceptance-block {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .acceptance-header {
+      background: var(--navy);
+      color: var(--white);
+      padding: var(--space-6) var(--space-8);
+    }
+
+    .acceptance-header h3 {
+      font-size: var(--text-base);
+      font-weight: 600;
+    }
+
+    .acceptance-header p {
+      font-size: var(--text-sm);
+      opacity: .65;
+      margin-top: var(--space-1);
+    }
+
+    .acceptance-body {
+      padding: var(--space-8);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-6);
+    }
+
+    .field-group label {
+      display: block;
+      font-size: var(--text-xs);
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: var(--space-2);
+    }
+
+    .field-line {
+      border-bottom: 1.5px solid var(--border);
+      height: 36px;
+    }
+
+    /* ─── Footer ─────────────────────────────────────────────────── */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,.7);
+      padding: var(--space-12) 0;
+      margin-top: var(--space-16);
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-4);
+      text-align: center;
+    }
+
+    .footer-brand {
+      font-size: var(--text-base);
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -.01em;
+    }
+
+    .footer-brand span {
+      color: var(--gold);
+    }
+
+    .footer-tagline {
+      font-size: var(--text-xs);
+      margin-top: var(--space-1);
+      opacity: .5;
+      letter-spacing: .04em;
+    }
+
+    .footer-divider {
+      width: 40px;
+      height: 1px;
+      background: rgba(255,255,255,.15);
+    }
+
+    .footer-contacts {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: var(--space-2) var(--space-6);
+    }
+
+    .footer-contact-item {
+      font-size: var(--text-sm);
+      color: rgba(255,255,255,.55);
+      white-space: nowrap;
+    }
+
+    /* ─── Print ──────────────────────────────────────────────────── */
+    @media print {
+      .accent-bar, .nav { display: none; }
+      body { background: white; }
+      .module, .card, .gantt, .summary-table, .payment-card,
+      .payment-breakdown, .acceptance-block { box-shadow: none; }
+    }
+
+    /* ─── Responsive ─────────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      /* Header */
+      .header { padding: var(--space-8) 0; }
+      .header-inner { flex-direction: column; gap: var(--space-6); }
+      .header-meta { text-align: left; }
+      .meta-item { align-items: flex-start; }
+      .proposal-title { font-size: var(--text-2xl); }
+      .proposal-title span { font-size: var(--text-xl); }
+
+      /* Sections */
+      main { padding: var(--space-8) 0; }
+      .section { margin-bottom: var(--space-12); }
+      .divider { margin: var(--space-12) 0; }
+
+      /* Info grid */
+      .info-grid { grid-template-columns: 1fr 1fr; }
+
+      /* Module header */
+      .module-header { flex-direction: column; align-items: flex-start; gap: var(--space-3); }
+
+      /* Service row */
+      .service-row { flex-direction: column; gap: var(--space-1); }
+      .service-price { font-size: var(--text-sm); }
+
+      /* Timeline table — scroll horizontal */
+      .timeline-table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+      /* Gantt — scroll horizontal */
+      .gantt { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      .gantt-header, .gantt-row { grid-template-columns: 130px 120px 120px 120px; min-width: 490px; }
+
+      /* Summary table — scroll horizontal */
+      .summary-table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+      /* Payment grid */
+      .payment-grid { grid-template-columns: 1fr 1fr; }
+
+      /* Payment breakdown — scroll horizontal */
+      .payment-breakdown { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      .payment-breakdown table { min-width: 480px; }
+
+      /* Cert list */
+      .cert-list { grid-template-columns: 1fr; }
+
+      /* Footer */
+      .footer-contacts { flex-direction: column; gap: var(--space-2); }
+      .footer-contact-item { white-space: normal; text-align: center; font-size: var(--text-xs); }
+    }
+
+    @media (max-width: 480px) {
+      .info-grid { grid-template-columns: 1fr; }
+      .payment-grid { grid-template-columns: 1fr; }
+      .proposal-title { font-size: var(--text-xl); }
+      .section-title { font-size: var(--text-xl); }
+      .module-header-left { flex-direction: row; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="accent-bar"></div>
+
+  <!-- ── Header ─────────────────────────────────────────────────── -->
+  <header class="header">
+    <div class="container">
+      <div class="header-inner">
+        <div>
+          <p class="agency-name">Clarituz — Agência de Marketing e Tecnologia</p>
+          <h1 class="proposal-title">
+            Proposta Comercial
+            <span>América 1 Climatização</span>
+          </h1>
+        </div>
+        <div class="header-meta">
+          <div class="meta-item">
+            <span class="meta-label">Nº da Proposta</span>
+            <span class="meta-value">001 / 2026</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Emissão</span>
+            <span class="meta-value">08 de maio de 2026</span>
+          </div>
+          <div class="meta-item">
+            <span class="badge badge-gold">Válida por 15 dias</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── Nav ────────────────────────────────────────────────────── -->
+  <nav class="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a class="nav-link" href="#cliente">Cliente</a>
+        <a class="nav-link" href="#sobre">Sobre nós</a>
+        <a class="nav-link" href="#escopo">Escopo</a>
+        <a class="nav-link" href="#cronograma">Cronograma</a>
+        <a class="nav-link" href="#investimento">Investimento</a>
+        <a class="nav-link" href="#pagamento">Pagamento</a>
+        <a class="nav-link" href="#condicoes">Condições</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── Main ───────────────────────────────────────────────────── -->
+  <main>
+    <div class="container">
+
+      <!-- Dados do Cliente -->
+      <section class="section" id="cliente">
+        <div class="section-header">
+          <p class="section-eyebrow">Cliente</p>
+          <h2 class="section-title">Dados do Contratante</h2>
+        </div>
+        <div class="info-grid">
+          <div class="info-item">
+            <p class="info-label">Empresa</p>
+            <p class="info-value">América 1 Climatização</p>
+          </div>
+          <div class="info-item">
+            <p class="info-label">Responsável</p>
+            <p class="info-value">Fernando Ribas</p>
+          </div>
+          <div class="info-item">
+            <p class="info-label">Segmento</p>
+            <p class="info-value">Climatização — Ar Condicionado</p>
+          </div>
+          <div class="info-item">
+            <p class="info-label">Localidade</p>
+            <p class="info-value">Campinas – SP</p>
+          </div>
+          <div class="info-item">
+            <p class="info-label">Serviços prestados</p>
+            <p class="info-value">Instalação · Manutenção · Higienização</p>
+          </div>
+          <div class="info-item">
+            <p class="info-label">Público-alvo</p>
+            <p class="info-value">Classe A / B — Empresas e Residências</p>
+          </div>
+        </div>
+      </section>
+
+      <hr class="divider" />
+
+      <!-- Sobre a Clarituz -->
+      <section class="section" id="sobre">
+        <div class="section-header">
+          <p class="section-eyebrow">Contratada</p>
+          <h2 class="section-title">Sobre a Clarituz</h2>
+        </div>
+        <div class="card card-accent">
+          <p style="font-size:var(--text-base);color:var(--text-secondary);line-height:1.7;margin-bottom:var(--space-6)">
+            Com <strong>mais de 7 anos de experiência</strong>, somos uma <strong>Agência de Resultados</strong> especializada em Marketing e Tecnologia. Temos como foco entregar sucesso para nossos clientes com um atendimento extremamente <strong>próximo e humano</strong>, atuando de forma conjunta e transparente.
+          </p>
+          <p style="font-size:var(--text-xs);font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted);margin-bottom:var(--space-3)">Pilares</p>
+          <div class="pillars">
+            <span class="pillar">Parceria</span>
+            <span class="pillar">Planejamento</span>
+            <span class="pillar">Criatividade</span>
+            <span class="pillar">Estratégia</span>
+            <span class="pillar">Otimização</span>
+            <span class="pillar">Resultado</span>
+          </div>
+        </div>
+
+        <p style="font-size:var(--text-xs);font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted);margin:var(--space-6) 0 var(--space-3)">Certificações Profissionais</p>
+        <div class="cert-list">
+          <div class="cert-item"><span class="cert-dot"></span>Adobe Certified Expert: Photoshop® CC</div>
+          <div class="cert-item"><span class="cert-dot"></span>Adobe Certified Expert: Illustrator® CC</div>
+          <div class="cert-item"><span class="cert-dot"></span>Google Ads: Certified</div>
+          <div class="cert-item"><span class="cert-dot"></span>Meta Certified: Media Buying Professional</div>
+          <div class="cert-item"><span class="cert-dot"></span>OMCP®: Online Marketing Certified Professional</div>
+          <div class="cert-item"><span class="cert-dot"></span>RD Station Partners: Gold 2022</div>
+        </div>
+      </section>
+
+      <hr class="divider" />
+
+      <!-- Entendimento -->
+      <section class="section">
+        <div class="section-header">
+          <p class="section-eyebrow">Contexto</p>
+          <h2 class="section-title">Entendimento do Projeto</h2>
+        </div>
+        <div class="card">
+          <p style="font-size:var(--text-base);color:var(--text-secondary);line-height:1.75">
+            A <strong style="color:var(--navy)">América 1 Climatização</strong> é uma empresa em fase de lançamento no segmento de climatização, com foco em atendimento a empresas e clientes de alto padrão (Classe A/B). O posicionamento da marca é inspirado no modelo norte-americano de excelência em serviços, com a proposta de elevar o nível de atendimento no setor de ar condicionado no Brasil.
+          </p>
+          <p style="font-size:var(--text-base);color:var(--text-secondary);line-height:1.75;margin-top:var(--space-4)">
+            O objetivo desta proposta é estruturar toda a <strong style="color:var(--navy)">identidade visual, padronização de materiais e presença digital</strong> da empresa, garantindo uma entrada no mercado com imagem sólida, profissional e premium — alinhada ao conceito americano que o cliente deseja transmitir.
+          </p>
+        </div>
+      </section>
+
+      <hr class="divider" />
+
+      <!-- Escopo -->
+      <section class="section" id="escopo">
+        <div class="section-header">
+          <p class="section-eyebrow">Escopo</p>
+          <h2 class="section-title">Serviços Contratados</h2>
+        </div>
+
+        <!-- PARTE 1 -->
+        <div class="module">
+          <div class="module-header">
+            <div class="module-header-left">
+              <div class="module-number">1</div>
+              <div>
+                <p class="module-title">Identidade de Marca</p>
+                <p class="module-subtitle">Logotipo · Identidade Visual · Brand Guide</p>
+              </div>
+            </div>
+            <span class="module-deadline">⏱ 30 dias corridos</span>
+          </div>
+          <div class="module-body">
+            <div class="service-item">
+              <div class="service-row">
+                <span class="service-name">1.1 — Desenvolvimento de Logotipo</span>
+                <span class="service-price">R$ 1.200,00</span>
+              </div>
+              <p class="service-desc">Criação do logotipo oficial com base nas referências e conceito do cliente, com variações de aplicação — versão principal, símbolo, horizontal e preto e branco. Inclui até 2 rodadas de revisão.</p>
+            </div>
+            <div class="service-item">
+              <div class="service-row">
+                <span class="service-name">1.2 — Identidade Visual Completa</span>
+                <span class="service-price">R$ 350,00</span>
+              </div>
+              <p class="service-desc">Definição do sistema visual da marca: paleta de cores oficial, tipografia institucional, padrões de uso e elementos gráficos de apoio.</p>
+            </div>
+            <div class="service-item">
+              <div class="service-row">
+                <span class="service-name">1.3 — Manual de Aplicação da Marca</span>
+                <span class="service-price">R$ 200,00</span>
+              </div>
+              <p class="service-desc">Documento técnico com normas de uso correto da marca: proporções, espaçamentos, aplicações sobre fundos claros e escuros, cores em CMYK, RGB e HEX. Garante consistência em todos os pontos de contato da marca.</p>
+            </div>
+          </div>
+          <div class="module-footer">
+            <span class="subtotal-label">Subtotal — Parte 1</span>
+            <span class="subtotal-value">R$ 1.750,00</span>
+          </div>
+        </div>
+
+        <!-- PARTE 2 -->
+        <div class="module">
+          <div class="module-header">
+            <div class="module-header-left">
+              <div class="module-number">2</div>
+              <div>
+                <p class="module-title">Padronização & Materiais</p>
+                <p class="module-subtitle">Frota · Vestuário · Papelaria · Fachada · Brindes</p>
+              </div>
+            </div>
+            <span class="module-deadline">⏱ 10 dias úteis após Parte 1</span>
+          </div>
+          <div class="module-body">
+            <div class="service-item">
+              <div class="service-row">
+                <span class="service-name">2.1 — Layout para Frota</span>
+                <span class="service-price">R$ 300,00</span>
+              </div>
+              <p class="service-desc">Envelopamento de veículo com vistas lateral, traseira e dianteira. Arquivo preparado para envio direto à empresa de envelopamento.</p>
+            </div>
+            <div class="service-item">
+              <div class="service-row">
+                <span class="service-name">2.2 — Layout para Vestuário</span>
+                <span class="service-price">R$ 100,00</span>
+              </div>
+              <p class="service-desc">Uniformes da equipe (polo/camiseta) com aplicação da identidade visual no peito e nas costas. Arquivo preparado para bordado e/ou sublimação.</p>
+            </div>
+            <div class="service-item">
+              <div class="service-row">
+                <span class="service-name">2.3 — Layout para Papelaria</span>
+                <span class="service-price">R$ 150,00</span>
+              </div>
+              <p class="service-desc">Cartão de visita (frente e verso), papel timbrado e envelope personalizado com identidade da marca.</p>
+            </div>
+            <div class="service-item">
+              <div class="service-row">
+                <span class="service-name">2.4 — Layout para Comunicação Visual — Fachada</span>
+                <span class="service-price courtesy">Cortesia</span>
+              </div>
+              <p class="service-desc">Layout para identificação visual no ponto de atendimento. Arquivo preparado para produção em gráfica. Incluído como cortesia nesta proposta.</p>
+            </div>
+            <div class="service-item">
+              <div class="service-row">
+                <span class="service-name">2.5 — Layout para Brindes Personalizados</span>
+                <span class="service-price">R$ 100,00</span>
+              </div>
+              <p class="service-desc">Layout para brinde(s) da marca — garrafa térmica, caneta e outros itens a definir com o cliente. Arquivo preparado para produção.</p>
+            </div>
+          </div>
+          <div class="module-footer">
+            <span class="subtotal-label">Subtotal — Parte 2</span>
+            <span class="subtotal-value">R$ 650,00</span>
+          </div>
+        </div>
+
+        <!-- PARTE 3 -->
+        <div class="module">
+          <div class="module-header">
+            <div class="module-header-left">
+              <div class="module-number">3</div>
+              <div>
+                <p class="module-title">Presença Digital</p>
+                <p class="module-subtitle">Website · Domínio · Hospedagem · E-mails · Redes Sociais</p>
+              </div>
+            </div>
+            <span class="module-deadline">⏱ Até 40 dias após Parte 1</span>
+          </div>
+          <div class="module-body">
+            <div class="service-item">
+              <div class="service-row">
+                <span class="service-name">3.1 — Website Institucional Otimizado</span>
+                <span class="service-price">R$ 2.500,00</span>
+              </div>
+              <p class="service-desc">Site responsivo (celular, tablet e desktop) com design personalizado e boas práticas de SEO On-Page. Inclui: página inicial, sobre, serviços, galeria, contato e integração com WhatsApp.</p>
+            </div>
+            <div class="service-item">
+              <div class="service-row">
+                <span class="service-name">3.2 — Registro de Domínio</span>
+                <span class="service-price">R$ 40,00 <span style="font-size:var(--text-xs);color:var(--text-muted);font-weight:400">/ano</span></span>
+              </div>
+              <p class="service-desc">O domínio <strong>america1.com.br</strong> já foi registrado. Este item contempla a transferência formal da titularidade para a conta do cliente no Registro.br, garantindo que o cliente seja o proprietário oficial do seu endereço digital.</p>
+            </div>
+            <div class="service-item">
+              <div class="service-row">
+                <span class="service-name">3.3 — Hospedagem Web</span>
+                <span class="service-price">R$ 350,00 <span style="font-size:var(--text-xs);color:var(--text-muted);font-weight:400">/ano</span></span>
+              </div>
+              <p class="service-desc">Plano anual com suporte técnico, certificado de segurança SSL (cadeado HTTPS) e uptime garantido.</p>
+            </div>
+            <div class="service-item">
+              <div class="service-row">
+                <span class="service-name">3.4 — Contas de E-mail Profissional</span>
+                <span class="service-price courtesy">Incluso</span>
+              </div>
+              <p class="service-desc">Criação e configuração de contas com o domínio da empresa (ex.: contato@america1.com.br). Incluso no pacote de hospedagem, sem custo adicional.</p>
+            </div>
+            <div class="service-item">
+              <div class="service-row">
+                <span class="service-name">3.5 — Instagram & LinkedIn</span>
+                <span class="service-price">R$ 150,00</span>
+              </div>
+              <p class="service-desc">Criação, configuração e otimização das contas oficiais: foto de perfil, capa, bio otimizada e configurações de contato. <em style="color:var(--text-muted)">Gestão de conteúdo mensal não está inclusa.</em></p>
+            </div>
+          </div>
+          <div class="module-footer">
+            <span class="subtotal-label">Subtotal — Parte 3</span>
+            <span class="subtotal-value">R$ 3.040,00</span>
+          </div>
+        </div>
+      </section>
+
+      <hr class="divider" />
+
+      <!-- Cronograma -->
+      <section class="section" id="cronograma">
+        <div class="section-header">
+          <p class="section-eyebrow">Planejamento</p>
+          <h2 class="section-title">Cronograma de Entrega</h2>
+        </div>
+
+        <table class="timeline-table" style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm)">
+          <thead>
+            <tr>
+              <th>Etapa</th>
+              <th>Descrição</th>
+              <th>Início</th>
+              <th>Prazo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Parte 1</strong></td>
+              <td>Identidade de Marca</td>
+              <td style="color:var(--text-secondary)">Após contrato + pagamento</td>
+              <td>30 dias corridos</td>
+            </tr>
+            <tr>
+              <td><strong>Parte 2</strong></td>
+              <td>Padronização & Materiais</td>
+              <td style="color:var(--text-secondary)">Após aprovação da Parte 1</td>
+              <td>10 dias úteis</td>
+            </tr>
+            <tr>
+              <td><strong>Parte 3</strong></td>
+              <td>Presença Digital</td>
+              <td style="color:var(--text-secondary)">Após aprovação da Parte 1</td>
+              <td>Até 40 dias corridos</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p style="font-size:var(--text-xs);font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted);margin:var(--space-8) 0 var(--space-4)">Visão Geral — Linha do Tempo</p>
+
+        <div class="gantt">
+          <div class="gantt-header">
+            <span>Módulo</span>
+            <span>Mês 1</span>
+            <span>Mês 2</span>
+            <span>Mês 2–3</span>
+          </div>
+          <div class="gantt-row">
+            <span class="gantt-label"><span class="module-tag tag-p1">P1</span> Identidade</span>
+            <div class="gantt-bar-cell"><div class="gantt-bar"><div class="gantt-bar-fill bar-p1"></div></div></div>
+            <div class="gantt-bar-cell"><div class="gantt-bar"></div></div>
+            <div class="gantt-bar-cell"><div class="gantt-bar"></div></div>
+          </div>
+          <div class="gantt-row">
+            <span class="gantt-label"><span class="module-tag tag-p2">P2</span> Materiais</span>
+            <div class="gantt-bar-cell"><div class="gantt-bar"></div></div>
+            <div class="gantt-bar-cell"><div class="gantt-bar"><div class="gantt-bar-fill bar-p2"></div></div></div>
+            <div class="gantt-bar-cell"><div class="gantt-bar"></div></div>
+          </div>
+          <div class="gantt-row">
+            <span class="gantt-label"><span class="module-tag tag-p3">P3</span> Digital</span>
+            <div class="gantt-bar-cell"><div class="gantt-bar"></div></div>
+            <div class="gantt-bar-cell"><div class="gantt-bar"><div class="gantt-bar-fill bar-p3"></div></div></div>
+            <div class="gantt-bar-cell"><div class="gantt-bar"><div class="gantt-bar-fill bar-p3"></div></div></div>
+          </div>
+        </div>
+
+        <div class="note-box">
+          <span>⏱</span>
+          <span><strong>Tempo total estimado: aproximadamente 70 dias.</strong> As Partes 2 e 3 rodam em paralelo após a aprovação da Parte 1, otimizando o tempo de entrega.</span>
+        </div>
+      </section>
+
+      <hr class="divider" />
+
+      <!-- Investimento -->
+      <section class="section" id="investimento">
+        <div class="section-header">
+          <p class="section-eyebrow">Financeiro</p>
+          <h2 class="section-title">Resumo do Investimento</h2>
+        </div>
+
+        <table class="summary-table">
+          <thead>
+            <tr>
+              <th>Módulo</th>
+              <th>Serviços incluídos</th>
+              <th style="text-align:right">Valor</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="module-tag tag-p1">Parte 1</span><br><strong>Identidade de Marca</strong></td>
+              <td style="color:var(--text-secondary)">Logotipo · Identidade Visual · Manual de Marca</td>
+              <td>R$ 1.750,00</td>
+            </tr>
+            <tr>
+              <td><span class="module-tag tag-p2">Parte 2</span><br><strong>Padronização & Materiais</strong></td>
+              <td style="color:var(--text-secondary)">Frota · Vestuário · Papelaria · Fachada (cortesia) · Brindes</td>
+              <td>R$ 650,00</td>
+            </tr>
+            <tr>
+              <td><span class="module-tag tag-p3">Parte 3</span><br><strong>Presença Digital</strong></td>
+              <td style="color:var(--text-secondary)">Website · Domínio · Hospedagem · E-mails · Redes Sociais</td>
+              <td>R$ 3.040,00</td>
+            </tr>
+            <tr class="total-row">
+              <td colspan="2"><strong>Total do Investimento</strong></td>
+              <td>R$ 5.440,00</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <hr class="divider" />
+
+      <!-- Pagamento -->
+      <section class="section" id="pagamento">
+        <div class="section-header">
+          <p class="section-eyebrow">Pagamento</p>
+          <h2 class="section-title">Condições de Pagamento</h2>
+        </div>
+
+        <div class="payment-grid">
+          <div class="payment-card">
+            <p class="payment-option-label">Opção A</p>
+            <p class="payment-card-title">Cartão de Crédito</p>
+            <p class="payment-card-value">4x R$ 1.360,00</p>
+            <p class="payment-card-detail">Sem juros</p>
+          </div>
+          <div class="payment-card">
+            <p class="payment-option-label">Opção B</p>
+            <p class="payment-card-title">Cartão de Crédito</p>
+            <p class="payment-card-value">12x ~R$ 453,00</p>
+            <p class="payment-card-detail">Juros por conta do cliente</p>
+          </div>
+          <div class="payment-card">
+            <p class="payment-option-label">Opção C</p>
+            <p class="payment-card-title">PIX / Transferência</p>
+            <p class="payment-card-value">50% + 50%</p>
+            <p class="payment-card-detail">Entrada + saldo na conclusão</p>
+          </div>
+          <div class="payment-card">
+            <p class="payment-option-label">Opção D</p>
+            <p class="payment-card-title">Por Módulo Entregue</p>
+            <p class="payment-card-value">3 parcelas</p>
+            <p class="payment-card-detail">Pagamento conforme entrega</p>
+          </div>
+        </div>
+
+        <p style="font-size:var(--text-xs);font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted);margin-bottom:var(--space-4)">Opção D — Detalhamento por Módulo</p>
+
+        <div class="payment-breakdown">
+          <table>
+            <thead>
+              <tr>
+                <th>Parcela</th>
+                <th>Referente a</th>
+                <th>Momento do Pagamento</th>
+                <th style="text-align:right">Valor</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="parcela-badge">1</span></td>
+                <td><strong>Início do projeto — Parte 1</strong></td>
+                <td style="color:var(--text-secondary)">Na assinatura do contrato</td>
+                <td style="text-align:right;font-weight:700;color:var(--navy)">R$ 1.750,00</td>
+              </tr>
+              <tr>
+                <td><span class="parcela-badge">2</span></td>
+                <td><strong>Entrega da Parte 1 / Início das Partes 2 e 3</strong></td>
+                <td style="color:var(--text-secondary)">Em até 30 dias</td>
+                <td style="text-align:right;font-weight:700;color:var(--navy)">R$ 650,00</td>
+              </tr>
+              <tr>
+                <td><span class="parcela-badge">3</span></td>
+                <td><strong>Entrega final das Partes 2 e 3</strong></td>
+                <td style="color:var(--text-secondary)">Em até 70 dias</td>
+                <td style="text-align:right;font-weight:700;color:var(--navy)">R$ 3.040,00</td>
+              </tr>
+              <tr style="background:var(--surface-alt)">
+                <td colspan="3" style="font-weight:700;color:var(--navy)">Total</td>
+                <td style="text-align:right;font-weight:700;font-size:var(--text-lg);color:var(--navy)">R$ 5.440,00</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <hr class="divider" />
+
+      <!-- Condições Gerais -->
+      <section class="section" id="condicoes">
+        <div class="section-header">
+          <p class="section-eyebrow">Contratual</p>
+          <h2 class="section-title">Condições Gerais</h2>
+        </div>
+        <div class="card">
+          <ul class="conditions-list">
+            <li>Esta proposta tem validade de <strong>15 dias corridos</strong> a partir da data de emissão.</li>
+            <li>Os prazos de entrega iniciam após a <strong>confirmação do pagamento</strong> e recebimento de todos os materiais e informações necessários pelo cliente.</li>
+            <li>Revisões adicionais além das previstas em cada item poderão ser cobradas à parte, mediante alinhamento prévio.</li>
+            <li>Arquivos de produção (fechados para gráfica) serão entregues após a <strong>quitação integral</strong> de cada parte correspondente.</li>
+            <li>O domínio <strong>america1.com.br</strong> deverá ter acesso cedido pelo atual titular para realização da transferência no Registro.br.</li>
+            <li>Gestão de redes sociais, produção de conteúdo e tráfego pago <strong>não estão inclusos</strong> nesta proposta e podem ser contratados separadamente.</li>
+          </ul>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ── Footer ─────────────────────────────────────────────────── -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <p class="footer-brand">Clarituz <span>|</span> Agência de Marketing e Tecnologia</p>
+          <p class="footer-tagline">Parceria · Planejamento · Criatividade · Estratégia · Otimização · Resultado</p>
+        </div>
+        <div class="footer-divider"></div>
+        <div class="footer-contacts">
+          <span class="footer-contact-item">📍 Av. José de Sousa Campos, 1073 — 12º andar, sala 1207, Cambuí · Campinas–SP · 13025-320</span>
+          <span class="footer-contact-item">📧 contato@clarituz.com.br</span>
+          <span class="footer-contact-item">📱 (19) 99283-7133</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
