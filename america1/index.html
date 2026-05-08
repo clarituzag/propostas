@@ -584,6 +584,15 @@
       margin-top: var(--space-4);
     }
 
+    /* ─── Timeline Wrapper ───────────────────────────────────────── */
+    .timeline-wrapper {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+
     /* ─── Summary Table ──────────────────────────────────────────── */
     .summary-table {
       width: 100%;
@@ -906,7 +915,8 @@
       .service-price { font-size: var(--text-sm); }
 
       /* Timeline table — scroll horizontal */
-      .timeline-table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      .timeline-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      .timeline-table { min-width: 480px; }
 
       /* Gantt — scroll horizontal */
       .gantt { overflow-x: auto; -webkit-overflow-scrolling: touch; }
@@ -1246,7 +1256,8 @@
           <h2 class="section-title">Cronograma de Entrega</h2>
         </div>
 
-        <table class="timeline-table" style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm)">
+        <div class="timeline-wrapper">
+        <table class="timeline-table">
           <thead>
             <tr>
               <th>Etapa</th>
@@ -1276,6 +1287,7 @@
             </tr>
           </tbody>
         </table>
+        </div>
 
         <p style="font-size:var(--text-xs);font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted);margin:var(--space-8) 0 var(--space-4)">Visão Geral — Linha do Tempo</p>
 
