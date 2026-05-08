@@ -881,6 +881,22 @@
       white-space: nowrap;
     }
 
+    /* ─── Scroll Reveal ──────────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+
     /* ─── Print ──────────────────────────────────────────────────── */
     @media print {
       .accent-bar, .nav { display: none; }
@@ -1481,6 +1497,52 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+      // ── Elementos que recebem o efeito ───────────────────────────
+      const targets = [
+        { selector: '.section-header',    stagger: false },
+        { selector: '.info-item',         stagger: true  },
+        { selector: '.card',              stagger: false },
+        { selector: '.cert-item',         stagger: true  },
+        { selector: '.module',            stagger: false },
+        { selector: '.timeline-wrapper',  stagger: false },
+        { selector: '.gantt',             stagger: false },
+        { selector: '.note-box',          stagger: false },
+        { selector: '.summary-table',     stagger: false },
+        { selector: '.payment-card',      stagger: true  },
+        { selector: '.payment-breakdown', stagger: false },
+        { selector: '.pillar',            stagger: true  },
+      ];
+
+      targets.forEach(({ selector, stagger }) => {
+        document.querySelectorAll(selector).forEach((el, i) => {
+          el.classList.add('reveal');
+          if (stagger) {
+            // Reinicia o índice a cada grupo de 6 para não acumular delay
+            el.style.transitionDelay = `${(i % 6) * 0.07}s`;
+          }
+        });
+      });
+
+      // ── Intersection Observer ────────────────────────────────────
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target); // anima uma vez só
+          }
+        });
+      }, {
+        threshold: 0.08,
+        rootMargin: '0px 0px -32px 0px'
+      });
+
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    });
+  </script>
 
 </body>
 </html>
